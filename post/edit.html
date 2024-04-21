@@ -6,7 +6,70 @@
     <link rel="stylesheet" type="text/css" href="style.css">
     <title>Title</title>
 </head>
+
 <body>
 
+    <header>
+        <div class="headerStart">
+            <img src="../assets/images/logo/logo.svg" alt="Innovatech solutions logo">
+            <a href="edit.html">Manage posts</a>
+            <a href="make.html">Create new post</a>
+        </div>
+        <div class="headerEnd">
+            <button class="logoutBTN" aria-label="Log out">X</button>
+            <button class="burgerMenuToggle" aria-label="Toggle Menu">=</button>
+            <div class="burgerMenu">
+                <a href="make.html">Create new post</a>
+                <a href="edit.html">Manage posts</a>
+                <button class="burgerMenuLogoutBTN" aria-label="Log out">Log out</button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="editPostSection">
+            <form>
+                <span>Edit post</span>
+                <label for="editTitle">Title:</label>
+                <input id="editTitle" type="text" aria-label="Title" required>
+                <label for="editText">Main text:</label>
+                <input id="editText" type="text" aria-label="Main text" maxlength="200" required>
+                <label for="editImage">Image URL:</label>
+                <input id="editImage" type="url" aria-label="Image URL" required>
+                <label for="editTags">Tags:</label>
+                <input id="editTags" type="text" aria-label="Tags (Comma separated)" required>
+                <input id="editSubmit" type="submit" value="Save Changes" aria-label="Save changes" required>
+                <button type="button" id="discardChanges">Discard Changes</button>
+            </form>
+        </section>
+
+        <section class="managePostsSection">
+            <h1>Manage posts</h1>
+            <div class="postsContainer">
+                <div class="postCard">
+                    <div class="postCardEdit">
+                        <button class="editPostButton" aria-label="Edit Post">Edit post</button>
+                        <button class="deletePostButton" aria-label="Delete Post">Delete post X</button>
+                    </div>
+                    <div class="postCardContent">
+                        <img class="postCardImg" src="" alt="">
+                        <h2 class="postCardTitle">Lorem Ipsum</h2>
+                        <p class="postCardTruncText">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam elit ligula, posuere vitae
+                            magna id...
+                        </p>
+                        <span class="postCardPublished">16.04.2024</span>
+                    </div>
+                </div>
+            </div>
+            <button>See more</button>
+        </section>
+    </main>
+
+    <footer>
+        <img src="../assets/images/logo/logo-w.svg" alt="Innovatech solutions logo">
+    </footer>
+
 </body>
+
 </html>
