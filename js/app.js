@@ -1,4 +1,4 @@
-
+import {fetchPostsInitial} from "./functions.js";
 // Function to extract the pathname from the URL
 function getPathname() {
     return window.location.pathname;
@@ -11,7 +11,7 @@ function route() {
     switch(pathname) {
         case '/FED1-Project-Exam-1/index.html':
 
-
+            fetchPostsInitial()
             break;
         case '/FED1-Project-Exam-1/post/index.html':
 
