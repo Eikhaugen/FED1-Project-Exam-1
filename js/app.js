@@ -9,35 +9,34 @@ function route() {
     const pathname = getPathname();
 
     switch(pathname) {
-        case '/':
+        case '/FED1-Project-Exam-1/index.html':
 
 
-            console.log('Index page');
             break;
-        case '/post/index.html':
+        case '/FED1-Project-Exam-1/post/index.html':
 
 
-            console.log('Post index page');
+
             break;
-        case '/post/make.html':
+        case '/FED1-Project-Exam-1/post/make.html':
 
 
-            console.log('Make post page');
+
             break;
-        case '/post/edit.html':
+        case '/FED1-Project-Exam-1/post/edit.html':
 
 
-            console.log('Edit post page');
+
             break;
-        case '/account/login.html':
+        case '/FED1-Project-Exam-1/account/login.html':
 
 
-            console.log('Login page');
+
             break;
-        case '/account/register.html':
+        case '/FED1-Project-Exam-1/account/register.html':
 
 
-            console.log('Register page');
+
             break;
         default:
 
