@@ -1,4 +1,4 @@
-import {fetchPostsInitial} from "./functions.js";
+import {fetchPostsInitial, fetchPostByID} from "./functions.js";
 // Function to extract the pathname from the URL
 function getPathname() {
     return window.location.pathname;
@@ -15,8 +15,7 @@ function route() {
             break;
         case '/FED1-Project-Exam-1/post/index.html':
 
-
-
+            fetchPostByID()
             break;
         case '/FED1-Project-Exam-1/post/make.html':
 
