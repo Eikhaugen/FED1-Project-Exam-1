@@ -1,3 +1,5 @@
+
+// Function for index.html
 export async function fetchPostsInitial() {
 
     try {
@@ -40,4 +42,34 @@ function displayCarouselPosts(posts, count){
                 <span>${post.created}</span>
             </a>`
     })
+}
+
+//Functions for post/index.html
+
+export async function fetchPostByID() {
+    const parameterString = window.location.search;
+    const searchParameters = new URLSearchParams(parameterString);
+    const postID = searchParameters.get("id");
+    try {
+        const response = await fetch(`https://v2.api.noroff.dev/blog/posts/Eikhaugen/${postID}`);
+        const result = await response.json();
+        const postData = result.data;
+        console.log(postData)
+        displayBlogPost(postData)
+        //Use counter param to set how many posts display in carousel.
+    } catch (error) {
+        console.error('Error fetching posts:', error);
+    }
+}
+
+function displayBlogPost(post) {
+    const blogPostContainer = document.querySelector(".blogPostContainer")
+
+        blogPostContainer.innerHTML =
+`            <img class="articleImg" src="${post.media.url}" alt="${post.media.alt}">
+            <span class="articleImgText">${post.media.alt}</span>
+            <h1 class="articleH1">$post.title}</h1>
+            <span class="articleAuthor">Author: ${post.author.name}</span>
+            <span class="articlePublished">Published: ${post.created}</span>
+            <p class="articleMainText">${post.body}</p>`
 }
