@@ -112,4 +112,39 @@ export function loginFunction(){
 
 //Functions for post/edit.html
 
+export async function fetchPostsEditPage(){
+    try {
+        const response = await fetch("https://v2.api.noroff.dev/blog/posts/Eikhaugen");
+        const result = await response.json();
+        const postData = result.data;
+        console.log(postData)
+        displayPostsEditPage(postData)
+    } catch (error) {
+        console.error('Error fetching posts:', error);
+    }
+}
 
+function displayPostsEditPage(posts){
+    const postsContainer = document.querySelector(".postsContainer")
+    postsContainer.innerHTML = '';
+    posts.forEach((post) => {
+        let truncatedText = '';
+        const text = post.body.split(" ");
+        truncatedText = text.slice(0, 20).join(" ") + "...";
+        postsContainer.innerHTML +=
+            `<div class="postCard">
+                    <div class="postCardEdit">
+                        <button class="editPostButton" aria-label="Edit Post" data-id="${post.id}">Edit post</button>
+                        <button class="deletePostButton" aria-label="Delete Post" data-id="${post.id}">Delete post X</button>
+                    </div>
+                    <div class="postCardContent">
+                        <img class="postCardImg" src="${post.media.url}" alt="${post.media.alt}">
+                        <h2 class="postCardTitle">${post.title}</h2>
+                        <p class="postCardTruncText">
+                            ${truncatedText}
+                        </p>
+                        <span class="postCardPublished">${post.created}</span>
+                    </div>
+                </div>`
+    })
+}
