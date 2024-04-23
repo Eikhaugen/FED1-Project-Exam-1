@@ -31,6 +31,7 @@ function displayBlogFeedPosts(posts) {
             </a>`
     })
 }
+
 function displayCarouselPosts(posts, count){
     const carouselPostsContainer = document.querySelector(".carouselPostsContainer")
     carouselPostsContainer.innerHTML = '';
@@ -45,7 +46,6 @@ function displayCarouselPosts(posts, count){
 }
 
 //Functions for post/index.html
-
 export async function fetchPostByID() {
     const parameterString = window.location.search;
     const searchParameters = new URLSearchParams(parameterString);
@@ -56,7 +56,6 @@ export async function fetchPostByID() {
         const postData = result.data;
         console.log(postData)
         displayBlogPost(postData)
-        //Use counter param to set how many posts display in carousel.
     } catch (error) {
         console.error('Error fetching posts:', error);
     }
@@ -73,3 +72,44 @@ function displayBlogPost(post) {
             <span class="articlePublished">Published: ${post.created}</span>
             <p class="articleMainText">${post.body}</p>`
 }
+
+//Functions for account/login.html
+export function loginFunction(){
+    const loginForm = document.getElementById('loginForm');
+    loginForm.addEventListener('submit', login);
+
+    function login(event) {
+        event.preventDefault();
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+        const requestBody = {
+            email: email,
+            password: password
+        };
+        fetch('https://v2.api.noroff.dev/auth/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(requestBody)
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Login failed. Please check your credentials.');
+                }
+                return response.json();
+            })
+            .then(data => {
+                sessionStorage.setItem('accessToken', data.accessToken);
+                window.location.href = '../post/edit.html';
+            })
+            .catch(error => {
+                alert(error.message)
+                console.error('Error:', error.message);
+            });
+    }
+}
+
+//Functions for post/edit.html
+
+
