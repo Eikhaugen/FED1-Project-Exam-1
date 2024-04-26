@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="../js/app.js" type="module" defer></script>
     <title>Title</title>
 </head>
 
@@ -28,16 +28,18 @@
 
     <main>
         <main>
-            <form>
+            <form id="createNewPostForm">
                 <h1>Create new post</h1>
                 <label for="createNewTitle">Title:</label>
                 <input id="createNewTitle" type="text" aria-label="Title" required>
                 <label for="createNewText">Main text:</label>
                 <input id="createNewText" type="text" aria-label="Main text" maxlength="200" required>
                 <label for="createNewImage">Image URL:</label>
-                <input id="createNewImage" type="url" aria-label="Image URL" required>
-                <label for="createNewTags">Tags:</label>
-                <input id="createNewTags" type="text" aria-label="Tags (Comma separated)" required>
+                <input id="createNewImage" type="url" aria-label="Image URL">
+                <label for="createNewImage">Image Text:</label>
+                <input id="createNewImageText" type="text" aria-label="Image alt">
+<!--                <label for="createNewTags">Tags:</label>-->
+<!--                <input id="createNewTags" type="text" aria-label="Tags (Comma separated)" required>-->
                 <input id="createNewSubmit" type="submit" aria-label="Submit" required>
             </form>
         </main>

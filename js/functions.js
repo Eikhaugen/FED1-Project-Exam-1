@@ -100,7 +100,9 @@ export function loginFunction(){
                 return response.json();
             })
             .then(data => {
-                sessionStorage.setItem('accessToken', data.accessToken);
+                const accessToken = data.data.accessToken;
+                sessionStorage.setItem('accessToken', accessToken);
+                console.log('Access Token:', accessToken);
                 window.location.href = '../post/edit.html';
             })
             .catch(error => {
@@ -111,7 +113,6 @@ export function loginFunction(){
 }
 
 //Functions for post/edit.html
-
 export async function fetchPostsEditPage(){
     try {
         const response = await fetch("https://v2.api.noroff.dev/blog/posts/Eikhaugen");
@@ -148,3 +149,56 @@ function displayPostsEditPage(posts){
                 </div>`
     })
 }
+
+// functions for post/make.html
+export function createPostFunction() {
+    const createPostForm = document.getElementById('createNewPostForm');
+    createPostForm.addEventListener('submit', createPost);
+
+    function createPost(event) {
+        event.preventDefault();
+        const accessToken = sessionStorage.getItem('accessToken');
+        const newTitle = document.getElementById('createNewTitle').value;
+        const newText = document.getElementById('createNewText').value;
+        const newImage = document.getElementById('createNewImage').value;
+        const newImageText = document.getElementById('createNewImageText').value;
+
+        const requestBody = JSON.stringify({
+            title: newTitle,
+            body: newText,
+            media: {
+                url: newImage,
+                alt: newImageText
+            }
+        });
+
+        const myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+        myHeaders.append("Authorization", `Bearer ${accessToken}`);
+
+        const requestOptions = {
+            method: "POST",
+            headers: myHeaders,
+            body: requestBody,
+            redirect: "follow"
+        };
+
+        fetch('https://v2.api.noroff.dev/blog/posts/Eikhaugen', requestOptions)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Failed to create post');
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log('New post created:', data);
+                window.location.href = '../post/edit.html';
+            })
+            .catch(error => {
+                alert(error.message);
+                console.error('Error:', error.message);
+            });
+    }
+}
+
+
