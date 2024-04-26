@@ -1,4 +1,4 @@
-import {fetchPostsInitial, fetchPostByID, loginFunction, fetchPostsEditPage} from "./functions.js";
+import {fetchPostsInitial, fetchPostByID, loginFunction, fetchPostsEditPage, createPostFunction} from "./functions.js";
 
 function getPathname() {
     return window.location.pathname;
@@ -24,7 +24,7 @@ function route() {
         case '/FED1-Project-Exam-1/post/make.html':
 
             // check if logged in
-            // function to make new post
+            createPostFunction()
             // logout function
 
             break;
