@@ -1,5 +1,5 @@
-
 // Function for index.html
+
 export async function fetchPostsInitial() {
 
     try {
@@ -45,7 +45,9 @@ function displayCarouselPosts(posts, count){
     })
 }
 
+
 //Functions for post/index.html
+
 export async function fetchPostByID() {
     const parameterString = window.location.search;
     const searchParameters = new URLSearchParams(parameterString);
@@ -73,7 +75,9 @@ function displayBlogPost(post) {
             <p class="articleMainText">${post.body}</p>`
 }
 
+
 //Functions for account/login.html
+
 export function loginFunction(){
     const loginForm = document.getElementById('loginForm');
     loginForm.addEventListener('submit', login);
@@ -112,7 +116,9 @@ export function loginFunction(){
     }
 }
 
+
 //Functions for post/edit.html
+
 export async function fetchPostsEditPage(){
     try {
         const response = await fetch("https://v2.api.noroff.dev/blog/posts/Eikhaugen");
@@ -150,55 +156,186 @@ function displayPostsEditPage(posts){
     })
 }
 
-// functions for post/make.html
-export function createPostFunction() {
-    const createPostForm = document.getElementById('createNewPostForm');
-    createPostForm.addEventListener('submit', createPost);
+export function editPostFunction() {
+    const editPostForm = document.getElementById('editPostForm');
+    const editSubmit = document.getElementById("editSubmit");
+    const editDiscard = document.getElementById("discardChanges")
+    let postID = "";
 
-    function createPost(event) {
+    function enableSubmitButton() {
+        editSubmit.disabled = false;
+    }
+
+    document.addEventListener('click', function(event) {
+        if (event.target.classList.contains('editPostButton')) {
+            postID = event.target.dataset.id;
+            editPostFormData(postID);
+        }
+    });
+
+    editPostForm.addEventListener('input', enableSubmitButton);
+
+    editSubmit.addEventListener('click', function(event) {
         event.preventDefault();
-        const accessToken = sessionStorage.getItem('accessToken');
-        const newTitle = document.getElementById('createNewTitle').value;
-        const newText = document.getElementById('createNewText').value;
-        const newImage = document.getElementById('createNewImage').value;
-        const newImageText = document.getElementById('createNewImageText').value;
+        editPostFormSubmit(postID);
+    });
 
-        const requestBody = JSON.stringify({
-            title: newTitle,
-            body: newText,
-            media: {
-                url: newImage,
-                alt: newImageText
-            }
+    editDiscard.addEventListener('click', function(){
+        window.location.href = '../post/edit.html';
+    })
+
+    document.addEventListener('click', function(event) {
+        if (event.target.classList.contains('deletePostButton')) {
+            postID = event.target.dataset.id;
+            deletePost(postID);
+        }
+    });
+
+}
+
+async function editPostFormData(postID) {
+    const editPostForm = document.getElementById('editPostForm');
+    const editTitle = document.getElementById("editTitle");
+    const editText = document.getElementById("editText");
+    const editImage = document.getElementById("editImage");
+    const editImageText = document.getElementById("editImageText");
+
+    try {
+        const response = await fetch(`https://v2.api.noroff.dev/blog/posts/Eikhaugen/${postID}`);
+        if (!response.ok) {
+            throw new Error('Failed to fetch post data');
+        }
+        const postData = await response.json();
+
+        editTitle.value = postData.data.title;
+        editText.value = postData.data.body;
+        editImage.value = postData.data.media.url;
+        editImageText.value = postData.data.media.alt;
+
+        editPostForm.style.display = "block";
+
+    } catch (error) {
+        console.error('Error fetching post data:', error);
+    }
+}
+
+async function editPostFormSubmit(postID) {
+    const accessToken = sessionStorage.getItem('accessToken');
+    const editTitle = document.getElementById('editTitle').value;
+    const editText = document.getElementById('editText').value;
+    const editImage = document.getElementById('editImage').value;
+    const editImageText = document.getElementById('editImageText').value;
+
+    const requestBody = JSON.stringify({
+        title: editTitle,
+        body: editText,
+        media: {
+            url: editImage,
+            alt: editImageText
+        }
+    });
+
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+    myHeaders.append("Authorization", `Bearer ${accessToken}`);
+
+    try {
+        const response = await fetch(`https://v2.api.noroff.dev/blog/posts/Eikhaugen/${postID}`, {
+            method: "PUT",
+            headers: myHeaders,
+            body: requestBody
         });
 
-        const myHeaders = new Headers();
-        myHeaders.append("Content-Type", "application/json");
-        myHeaders.append("Authorization", `Bearer ${accessToken}`);
+        if (!response.ok) {
+            throw new Error('Failed to update post');
+        }
 
-        const requestOptions = {
-            method: "POST",
-            headers: myHeaders,
-            body: requestBody,
-            redirect: "follow"
-        };
+        const responseData = await response.json();
+        window.location.reload();
 
-        fetch('https://v2.api.noroff.dev/blog/posts/Eikhaugen', requestOptions)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Failed to create post');
-                }
-                return response.json();
-            })
-            .then(data => {
-                console.log('New post created:', data);
-                window.location.href = '../post/edit.html';
-            })
-            .catch(error => {
-                alert(error.message);
-                console.error('Error:', error.message);
-            });
+    } catch (error) {
+        alert(error.message);
+        console.error('Error:', error.message);
+    }
+}
+
+async function deletePost(postID) {
+    const accessToken = sessionStorage.getItem('accessToken');
+
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+    myHeaders.append("Authorization", `Bearer ${accessToken}`);
+
+    try {
+        const response = await fetch(`https://v2.api.noroff.dev/blog/posts/Eikhaugen/${postID}`, {
+            method: "DELETE",
+            headers: myHeaders
+        });
+
+        if (!response.ok) {
+            throw new Error('Failed to delete post');
+        }
+
+        console.log('Post deleted successfully');
+        alert('Post deleted successfully');
+        window.location.reload();
+
+    } catch (error) {
+        alert(error.message);
+        console.error('Error:', error.message);
     }
 }
 
 
+
+// functions for post/make.html
+
+export function createPostFunction() {
+    const createPostForm = document.getElementById('createNewPostForm');
+    createPostForm.addEventListener('submit', createPost);
+}
+
+function createPost(event) {
+    event.preventDefault();
+    const accessToken = sessionStorage.getItem('accessToken');
+    const newTitle = document.getElementById('createNewTitle').value;
+    const newText = document.getElementById('createNewText').value;
+    const newImage = document.getElementById('createNewImage').value;
+    const newImageText = document.getElementById('createNewImageText').value;
+
+    const requestBody = JSON.stringify({
+        title: newTitle,
+        body: newText,
+        media: {
+            url: newImage,
+            alt: newImageText
+        }
+    });
+
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+    myHeaders.append("Authorization", `Bearer ${accessToken}`);
+
+    const requestOptions = {
+        method: "POST",
+        headers: myHeaders,
+        body: requestBody,
+        redirect: "follow"
+    };
+
+    fetch('https://v2.api.noroff.dev/blog/posts/Eikhaugen', requestOptions)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Failed to create post');
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log('New post created:', data);
+            window.location.href = '../post/edit.html';
+        })
+        .catch(error => {
+            alert(error.message);
+            console.error('Error:', error.message);
+        });
+}

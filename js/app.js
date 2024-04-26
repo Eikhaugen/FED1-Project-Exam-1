@@ -1,4 +1,11 @@
-import {fetchPostsInitial, fetchPostByID, loginFunction, fetchPostsEditPage, createPostFunction} from "./functions.js";
+import {
+    fetchPostsInitial,
+    fetchPostByID,
+    loginFunction,
+    fetchPostsEditPage,
+    createPostFunction,
+    editPostFunction
+} from "./functions.js";
 
 function getPathname() {
     return window.location.pathname;
@@ -33,7 +40,7 @@ function route() {
             // check if logged in
             fetchPostsEditPage()
             // load more posts
-            // editPostFunction
+            editPostFunction()
                 // fetch by ID
                 // fill form with data
                 // save or discard changes
