@@ -28,16 +28,18 @@
 
     <main>
         <section class="editPostSection">
-            <form>
+            <form id="editPostForm">
                 <span>Edit post</span>
                 <label for="editTitle">Title:</label>
                 <input id="editTitle" type="text" aria-label="Title" required>
                 <label for="editText">Main text:</label>
                 <input id="editText" type="text" aria-label="Main text" maxlength="200" required>
                 <label for="editImage">Image URL:</label>
-                <input id="editImage" type="url" aria-label="Image URL" required>
-                <label for="editTags">Tags:</label>
-                <input id="editTags" type="text" aria-label="Tags (Comma separated)" required>
+                <input id="editImage" type="url" aria-label="Image URL" >
+                <label for="editImageText">Image text:</label>
+                <input id="editImageText" type="text" aria-label="Image text" >
+<!--                <label for="editTags">Tags:</label>-->
+<!--                <input id="editTags" type="text" aria-label="Tags (Comma separated)" required>-->
                 <input id="editSubmit" type="submit" value="Save Changes" aria-label="Save changes" required>
                 <button type="button" id="discardChanges">Discard Changes</button>
             </form>
