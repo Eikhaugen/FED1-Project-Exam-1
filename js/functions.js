@@ -19,9 +19,8 @@ function displayBlogFeedPosts(posts) {
     const blogFeedPostsContainer = document.querySelector(".blogFeedPostsContainer")
     blogFeedPostsContainer.innerHTML = '';
     posts.forEach((post) => {
-        let truncatedText = '';
         const text = post.body.split(" ");
-        truncatedText = text.slice(0, 20).join(" ") + "...";
+        let truncatedText = text.slice(0, 20).join(" ") + "...";
         blogFeedPostsContainer.innerHTML +=
             `<a class="blogFeedPostCard" href="post/index.html?id=${post.id}" aria-label="navigate to blog post">
                 <img src="${post.media.url}" alt="${post.media.alt}">
@@ -135,9 +134,8 @@ function displayPostsEditPage(posts){
     const postsContainer = document.querySelector(".postsContainer")
     postsContainer.innerHTML = '';
     posts.forEach((post) => {
-        let truncatedText = '';
         const text = post.body.split(" ");
-        truncatedText = text.slice(0, 20).join(" ") + "...";
+        let truncatedText = text.slice(0, 20).join(" ") + "...";
         postsContainer.innerHTML +=
             `<div class="postCard">
                     <div class="postCardEdit">
@@ -249,9 +247,6 @@ async function editPostFormSubmit(postID) {
         if (!response.ok) {
             throw new Error('Failed to update post');
         }
-
-        const responseData = await response.json();
-        window.location.reload();
 
     } catch (error) {
         alert(error.message);
