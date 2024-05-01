@@ -4,7 +4,7 @@ import {
     loginFunction,
     fetchPostsEditPage,
     createPostFunction,
-    editPostFunction
+    editPostFunction, register
 } from "./functions.js";
 
 function getPathname() {
@@ -57,7 +57,7 @@ function route() {
         case '/FED1-Project-Exam-1/account/register.html':
 
             // check if already logged in
-            // registerFunction
+            document.getElementById('registerSubmit').addEventListener('click', register);
 
             break;
         default:
