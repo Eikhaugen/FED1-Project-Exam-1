@@ -80,39 +80,39 @@ function displayBlogPost(post) {
 export function loginFunction(){
     const loginForm = document.getElementById('loginForm');
     loginForm.addEventListener('submit', login);
+}
 
-    function login(event) {
-        event.preventDefault();
-        const email = document.getElementById('email').value;
-        const password = document.getElementById('password').value;
-        const requestBody = {
-            email: email,
-            password: password
-        };
-        fetch('https://v2.api.noroff.dev/auth/login', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(requestBody)
+function login(event) {
+    event.preventDefault();
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    const requestBody = {
+        email: email,
+        password: password
+    };
+    fetch('https://v2.api.noroff.dev/auth/login', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(requestBody)
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Login failed. Please check your credentials.');
+            }
+            return response.json();
         })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Login failed. Please check your credentials.');
-                }
-                return response.json();
-            })
-            .then(data => {
-                const accessToken = data.data.accessToken;
-                sessionStorage.setItem('accessToken', accessToken);
-                console.log('Access Token:', accessToken);
-                window.location.href = '../post/edit.html';
-            })
-            .catch(error => {
-                alert(error.message)
-                console.error('Error:', error.message);
-            });
-    }
+        .then(data => {
+            const accessToken = data.data.accessToken;
+            sessionStorage.setItem('accessToken', accessToken);
+            console.log('Access Token:', accessToken);
+            window.location.href = '../post/edit.html';
+        })
+        .catch(error => {
+            alert(error.message)
+            console.error('Error:', error.message);
+        });
 }
 
 
@@ -160,10 +160,6 @@ export function editPostFunction() {
     const editDiscard = document.getElementById("discardChanges")
     let postID = "";
 
-    function enableSubmitButton() {
-        editSubmit.disabled = false;
-    }
-
     document.addEventListener('click', function(event) {
         if (event.target.classList.contains('editPostButton')) {
             postID = event.target.dataset.id;
@@ -171,12 +167,16 @@ export function editPostFunction() {
         }
     });
 
-    editPostForm.addEventListener('input', enableSubmitButton);
-
     editSubmit.addEventListener('click', function(event) {
         event.preventDefault();
         editPostFormSubmit(postID);
     });
+
+    function enableSubmitButton() {
+        editSubmit.disabled = false;
+    }
+
+    editPostForm.addEventListener('input', enableSubmitButton);
 
     editDiscard.addEventListener('click', function(){
         window.location.href = '../post/edit.html';
@@ -282,7 +282,6 @@ async function deletePost(postID) {
 }
 
 
-
 // functions for post/make.html
 
 export function createPostFunction() {
@@ -328,6 +327,87 @@ function createPost(event) {
         .then(data => {
             console.log('New post created:', data);
             window.location.href = '../post/edit.html';
+        })
+        .catch(error => {
+            alert(error.message);
+            console.error('Error:', error.message);
+        });
+}
+
+
+// Functions for account/register.html
+
+// Function to check if all fields are filled
+function checkFieldsFilled() {
+    const email = document.getElementById('email').value;
+    const name = document.getElementById('name').value;
+    const password = document.getElementById('password').value;
+    const confirmPassword = document.getElementById('confirmPassword').value;
+
+    if (!email || !name || !password || !confirmPassword) {
+        alert('Please fill in all fields.');
+        return false;
+    }
+
+    return true;
+}
+
+// Function to check password complexity
+function checkPasswordComplexity(password) {
+    return password.length >= 8;
+}
+
+// Function to handle registration
+export async function register(event) {
+    event.preventDefault();
+
+    // Check if all fields are filled
+    if (!checkFieldsFilled()) {
+        return;
+    }
+
+    const email = document.getElementById('email').value;
+    const name = document.getElementById('name').value;
+    const password = document.getElementById('password').value;
+    const confirmPassword = document.getElementById('confirmPassword').value;
+
+    // Check password complexity
+    const isPasswordComplex = checkPasswordComplexity(password);
+
+    if (!isPasswordComplex) {
+        alert('Password must be at least 8 characters long.');
+        return;
+    }
+
+    // Check if password and confirm password match
+    if (password !== confirmPassword) {
+        alert('Password and confirm password must match.');
+        return;
+    }
+
+    const requestBody = {
+        name: name,
+        email: email,
+        password: password
+    };
+
+    fetch('https://v2.api.noroff.dev/auth/register', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(requestBody)
+    })
+        .then(response => {
+            if (!response.ok) {
+                return response.json().then(errorResponse => {
+                    throw new Error(errorResponse.errors[0].message);
+                });
+            }
+            return response.json();
+        })
+        .then(data => {
+            window.location.href = '../account/login.html';
         })
         .catch(error => {
             alert(error.message);
