@@ -169,8 +169,14 @@ export function editPostFunction() {
 
     editSubmit.addEventListener('click', function(event) {
         event.preventDefault();
-        editPostFormSubmit(postID);
-    });
+        editPostFormSubmit(postID)
+            .then(() => {
+                window.location.reload();
+            })
+            .catch(error => {
+                console.error('Error:', error.message);
+                alert(error.message)
+            })})
 
     function enableSubmitButton() {
         editSubmit.disabled = false;

@@ -6,6 +6,7 @@ import {
     createPostFunction,
     editPostFunction, register
 } from "./functions.js";
+import {checkIfLoggedIn, logoutFunction} from "./utils.js";
 
 function getPathname() {
     return window.location.pathname;
@@ -30,35 +31,25 @@ function route() {
             break;
         case '/FED1-Project-Exam-1/post/make.html':
 
-            // check if logged in
+            checkIfLoggedIn();
             createPostFunction()
-            // logout function
-
+            logoutFunction();
             break;
         case '/FED1-Project-Exam-1/post/edit.html':
 
-            // check if logged in
-            fetchPostsEditPage()
+            checkIfLoggedIn();
+            fetchPostsEditPage();
             // load more posts
-            editPostFunction()
-                // fetch by ID
-                // fill form with data
-                // save or discard changes
-            // delete post
-            // logout function
-
+            editPostFunction();
+            logoutFunction();
             break;
         case '/FED1-Project-Exam-1/account/login.html':
 
-            // check if already logged in
             loginFunction()
-
             break;
         case '/FED1-Project-Exam-1/account/register.html':
 
-            // check if already logged in
             document.getElementById('registerSubmit').addEventListener('click', register);
-
             break;
         default:
 
