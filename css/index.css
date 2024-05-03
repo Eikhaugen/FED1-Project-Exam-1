@@ -65,9 +65,7 @@
 
 .blogFeedPostCardDate{
     font-size: 13px;
-    font-family: roboto, sans-serif;
     color: var(--captions);
-    text-align: right;
 }
 
 h2{

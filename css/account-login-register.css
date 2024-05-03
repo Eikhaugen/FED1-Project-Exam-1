@@ -1,0 +1,97 @@
+@import url(reset.css);
+@import url(constants.css);
+@import url(header-and-footer.css);
+
+header {
+    background-color: var(--primary);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    width: 100%;
+}
+
+header span{
+    color: var(--text-white);
+    font-size: 20px;
+}
+
+main{
+    min-height: 100vh;
+    width: 100vw;
+    padding: 32px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.loginContainer, .registrationContainer{
+    width: 100%;
+    max-width: 400px;
+    background-color: #ffffff;
+    padding: 32px 44px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loginForm, .registrationForm{
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 8px;
+    background-color: #F3F3F3;
+    border-radius: 8px;
+}
+
+h1{
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.loginForm label, .registrationForm label{
+    font-family: roboto, sans-serif;
+    font-size: 16px;
+    color: var(--text);
+}
+
+.loginForm input, .registrationForm input{
+    width: 100%;
+    height: 40px;
+    background-color: #D2D2D2;
+    padding: 4px 8px;
+    border-radius: 8px;
+}
+
+.loginForm input:hover, .loginForm input:active, .loginForm input:focus, .registrationForm input:hover, .registrationForm input:active, .registrationForm input:focus{
+    background-color: #ffffff;
+}
+
+#loginSubmit, #registerSubmit{
+    background-color: var(--secondary);
+    color: var(--text-white);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: roboto, sans-serif;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+#loginSubmit:hover, #loginSubmit:focus, #registerSubmit:hover, #registerSubmit:focus{
+    background-color: var(--secondary-hover);
+}
+
+.loginForm a, .registrationForm a{
+    font-size: 14px;
+    font-family: roboto, sans-serif;
+    width: 100%;
+    text-align: center;
+    color: var(--captions);
+}
+
+.loginForm a:hover, .registrationForm a:hover{
+    color: var(--secondary-hover);
+}
+

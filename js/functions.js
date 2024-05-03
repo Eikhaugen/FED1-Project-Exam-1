@@ -416,6 +416,7 @@ export async function register(event) {
             return response.json();
         })
         .then(data => {
+            alert("Registered successfully, You can now log in ")
             window.location.href = '../account/login.html';
         })
         .catch(error => {
