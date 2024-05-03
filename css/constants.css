@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+:root {
+    --background: #393939;
+    --primary: #E34444;
+    --primary-hover: #FF5B5B;
+    --primary-inactive: #994A4A;
+    --secondary: #2D848A;
+    --secondary-hover: #02D2E0;
+    --secondary-inactive: #364F51;
+    --text: #0B0B0B;
+    --text-white: #F4F4F4;
+    --clickable-text: #555555;
+    --captions: #393939;
+    --footer: #2b2b2b;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: "roboto", sans-serif;
+    font-weight: 400;
+}
+
+p,
+a,
+li,
+span,
+button {
+    font-family: "inter", sans-serif;
+    font-weight: 400;
+    font-size: 1rem;
+    color: var(--text);
+}
+
+a:focus, button:focus{
+    border: 2px solid orange;
+}
+
+body {
+    background-color: var(--background);
+    min-width: 100vw;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

@@ -1,0 +1,99 @@
+@import url(reset.css);
+@import url(constants.css);
+@import url(header-and-footer.css);
+
+.recentPostsCarousel{
+
+}
+
+.blogFeedSection{
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.blogFeedHeader{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.blogFeedHeader h1{
+    background-color: var(--primary);
+    color: var(--text-white);
+    border-radius: 8px;
+    padding: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.filterFeedBTN{
+    width: 31px;
+    height: 31px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.filterFeedBTN, .recentPostsCarouselBtnPrevious, .recentPostsCarouselBtnNext, .         loadMorePostsFeedBTN {
+    cursor: pointer;
+}
+
+.blogFeedPostsContainer{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.blogFeedPostCard{
+    background-color: #FFFFFF;
+    width: 100%;
+    height: fit-content;
+    padding: 4px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.blogFeedPostCard img, .blogFeedPostCard h2, .blogFeedPostCard span{
+    width: 100%;
+}
+
+.blogFeedPostCardDate{
+    font-size: 10px;
+    font-family: roboto, sans-serif;
+    color: var(--captions);
+    text-align: right;
+}
+
+h2{
+    font-size: 18px;
+    font-family: "Roboto", sans-serif;
+    font-weight: 500;
+    color: var(--text);
+}
+
+.blogFeedPostCardTruncText{
+    font-family: roboto, sans-serif;
+    font-size: 16px;
+    color: var(--text);
+}
+
+.loadMorePostsFeedBTN{
+    background-color: var(--secondary);
+    color: var(--text-white);
+    height: 40px;
+    width: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+}
+
+.loadMorePostsFeedBTN:hover{
+    background-color: var(--secondary-hover);
+}
