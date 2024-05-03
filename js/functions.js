@@ -66,11 +66,14 @@ function displayBlogPost(post) {
     const blogPostContainer = document.querySelector(".blogPostContainer")
 
         blogPostContainer.innerHTML =
-`            <img class="articleImg" src="${post.media.url}" alt="${post.media.alt}">
+`            
+            <div class="blogPostImageContainer">
+            <img class="articleImg" src="${post.media.url}" alt="${post.media.alt}">
             <span class="articleImgText">${post.media.alt}</span>
-            <h1 class="articleH1">${post.title}</h1>
+            </div>
             <span class="articleAuthor">Author: ${post.author.name}</span>
             <span class="articlePublished">Published: ${post.created}</span>
+            <h1 class="articleH1">${post.title}</h1>
             <p class="articleMainText">${post.body}</p>`
 }
 

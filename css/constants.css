@@ -20,17 +20,13 @@ h2,
 h3,
 h4,
 h5,
-h6 {
-    font-family: "roboto", sans-serif;
-    font-weight: 400;
-}
-
+h6,
 p,
 a,
 li,
 span,
-button {
-    font-family: "inter", sans-serif;
+button{
+    font-family: "roboto", sans-serif;
     font-weight: 400;
     font-size: 1rem;
     color: var(--text);
