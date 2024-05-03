@@ -6,7 +6,10 @@ import {
     createPostFunction,
     editPostFunction, register
 } from "./functions.js";
-import {checkIfLoggedIn, logoutFunction} from "./utils.js";
+import {
+    checkIfLoggedIn,
+    logoutFunction
+} from "./utils.js";
 
 function getPathname() {
     return window.location.pathname;
@@ -19,11 +22,11 @@ function route() {
         case '/FED1-Project-Exam-1/index.html':
 
             fetchPostsInitial()
-            // function to load more posts
-            // carousel functionality
-            // function to reorder posts
-            // function to filter by tags
-            // function to search
+            // TODO function to load more posts
+            // TODO carousel functionality
+            // TODO function to reorder posts
+            // TODO function to filter by tags?
+            // TODO function to search?
             break;
         case '/FED1-Project-Exam-1/post/index.html':
 
@@ -39,7 +42,7 @@ function route() {
 
             checkIfLoggedIn();
             fetchPostsEditPage();
-            // load more posts
+            //TODO load more posts
             editPostFunction();
             logoutFunction();
             break;
@@ -52,9 +55,7 @@ function route() {
             document.getElementById('registerSubmit').addEventListener('click', register);
             break;
         default:
-
             console.log('Page not found');
-            // reroute to index.html
     }
 }
 

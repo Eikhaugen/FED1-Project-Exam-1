@@ -26,7 +26,7 @@ function displayBlogFeedPosts(posts) {
                 <img src="${post.media.url}" alt="${post.media.alt}">
                 <h2>${post.title}</h2>
                 <span class="blogFeedPostCardTruncText">${truncatedText}</span>
-                <span>${post.created}</span>
+                <span class="blogFeedPostCardDate">${post.created}</span>
             </a>`
     })
 }
@@ -68,7 +68,7 @@ function displayBlogPost(post) {
         blogPostContainer.innerHTML =
 `            <img class="articleImg" src="${post.media.url}" alt="${post.media.alt}">
             <span class="articleImgText">${post.media.alt}</span>
-            <h1 class="articleH1">$post.title}</h1>
+            <h1 class="articleH1">${post.title}</h1>
             <span class="articleAuthor">Author: ${post.author.name}</span>
             <span class="articlePublished">Published: ${post.created}</span>
             <p class="articleMainText">${post.body}</p>`
