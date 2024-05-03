@@ -64,22 +64,22 @@
 }
 
 .blogFeedPostCardDate{
-    font-size: 10px;
+    font-size: 13px;
     font-family: roboto, sans-serif;
     color: var(--captions);
     text-align: right;
 }
 
 h2{
-    font-size: 18px;
+    font-size: 24px;
     font-family: "Roboto", sans-serif;
-    font-weight: 500;
+    font-weight: 700;
     color: var(--text);
 }
 
 .blogFeedPostCardTruncText{
     font-family: roboto, sans-serif;
-    font-size: 16px;
+    font-size: 18px;
     color: var(--text);
 }
 
