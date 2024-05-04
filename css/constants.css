@@ -48,3 +48,7 @@ body {
 .menu-open {
     overflow: hidden;
 }
+
+main{
+    max-width: 1440px;
+}
