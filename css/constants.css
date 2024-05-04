@@ -44,3 +44,7 @@ body {
     flex-direction: column;
     align-items: center;
 }
+
+.menu-open {
+    overflow: hidden;
+}
