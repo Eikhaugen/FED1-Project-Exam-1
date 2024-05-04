@@ -21,7 +21,17 @@ h2{
 }
 
 .editPostSection{
+    position: absolute;
+    overflow-y: scroll;
+    top: 50px;
+    left: 0;
     display: none;
+    padding: 8px;
+    width: 100vw;
+    height: -o-calc(100vh - 50px);
+    height: -webkit-calc(100vh - 50px);
+    height: -moz-calc(100vh - 50px);
+    background-color: var(--background);
 }
 
 .managePostsSection{
@@ -73,9 +83,9 @@ h2{
     gap: 8px;
 }
 
-#createNewPostForm{
+#createNewPostForm, #editPostForm{
     width: 100%;
-    height: 100%;
+    height: fit-content;
     background-color: #FFFFFF;
     border-radius: 8px;
     padding: 8px;
@@ -91,7 +101,7 @@ h2{
     color: var(--text);
 }
 
-#createNewTitle, #createNewImage, #createNewImageText {
+#createNewTitle, #createNewImage, #createNewImageText, #editTitle, #editImage, #editImageText {
     width: 100%;
     height: 40px;
     background-color: #D2D2D2;
@@ -100,12 +110,14 @@ h2{
     font-family: roboto, sans-serif;
     border: 1px solid #ffffff;
 }
-#createNewTitle:hover, #createNewImage:hover, #createNewImageText:hover, #createNewTitle:focus-within, #createNewImage:focus-within, #createNewImageText:focus-within {
+#createNewTitle:hover, #createNewImage:hover, #createNewImageText:hover, #createNewTitle:focus-within, #createNewImage:focus-within, #createNewImageText:focus-within,
+#editTitle:hover, #editImage:hover, #editImageText:hover, #editTitle:focus-within, #editImage:focus-within, #editImageText:focus-within
+{
     background-color: #ffffff;
     border: 1px solid #d2d2d2;
 }
 
-#createNewPostForm label{
+#createNewPostForm label, #editPostForm label{
     font-family: roboto, sans-serif;
     font-size: 16px;
     color: var(--text);
@@ -128,7 +140,7 @@ textarea:hover, textarea:focus-within{
     border: 1px solid #d2d2d2;
 }
 
-.managePostsSectionButton, #createNewSubmit{
+.managePostsSectionButton, #createNewSubmit, #editSubmit{
     width: 160px;
     height: 40px;
     background-color: var(--secondary);
@@ -139,6 +151,27 @@ textarea:hover, textarea:focus-within{
     border-radius: 8px;
 }
 
-.managePostsSectionButton:hover, .managePostsSectionButton:focus, #createNewSubmit:hover, #createNewSubmit:focus{
+.managePostsSectionButton, #createNewSubmit, #editSubmit, #discardChanges{
+    font-family: "roboto", sans-serif;
+    font-weight: 400;
+    font-size: 1rem;
+}
+
+.managePostsSectionButton:hover, .managePostsSectionButton:focus, #createNewSubmit:hover, #createNewSubmit:focus, #editSubmit:hover, #editSubmit:focus{
     background-color: var(--secondary-hover);
+}
+
+#discardChanges{
+    width: 160px;
+    height: 40px;
+    background-color: var(--primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-white);
+    border-radius: 8px;
+}
+
+#discardChanges:hover, #discardChanges:focus{
+    background-color: var(--primary-hover);
 }

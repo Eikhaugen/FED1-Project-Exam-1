@@ -1,3 +1,20 @@
+//Burger Menu
+export function burgerMenuSetup(){
+    const body = document.querySelector("body");
+    const burgerMenuToggle = document.querySelector(".burgerMenuToggle");
+    const burgerMenu = document.querySelector(".burgerMenu");
+
+    burgerMenuToggle.addEventListener("click", function(){
+        if (burgerMenu.style.display === "none" || burgerMenu.style.display === "") {
+            burgerMenu.style.display = "flex";
+            body.classList.add("menu-open");
+        } else {
+            burgerMenu.style.display = "none";
+            body.classList.remove("menu-open");
+        }
+    })
+}
+
 // Function for index.html
 
 export async function fetchPostsInitial() {
@@ -160,7 +177,7 @@ function displayPostsEditPage(posts){
 export function editPostFunction() {
     const editPostForm = document.getElementById('editPostForm');
     const editSubmit = document.getElementById("editSubmit");
-    const editDiscard = document.getElementById("discardChanges")
+    const editDiscard = document.getElementById("discardChanges");
     let postID = "";
 
     document.addEventListener('click', function(event) {
@@ -201,11 +218,13 @@ export function editPostFunction() {
 }
 
 async function editPostFormData(postID) {
-    const editPostForm = document.getElementById('editPostForm');
+    const body = document.querySelector("body");
+    const managePostsSection = document.querySelector(".managePostsSection");
     const editTitle = document.getElementById("editTitle");
     const editText = document.getElementById("editText");
     const editImage = document.getElementById("editImage");
     const editImageText = document.getElementById("editImageText");
+    const editPostContainer = document.querySelector(".editPostSection")
 
     try {
         const response = await fetch(`https://v2.api.noroff.dev/blog/posts/Eikhaugen/${postID}`);
@@ -219,7 +238,9 @@ async function editPostFormData(postID) {
         editImage.value = postData.data.media.url;
         editImageText.value = postData.data.media.alt;
 
-        editPostForm.style.display = "block";
+        editPostContainer.style.display = "block";
+        body.classList.add(".menu-open");
+        managePostsSection.style.display = "none";
 
     } catch (error) {
         console.error('Error fetching post data:', error);

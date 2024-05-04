@@ -4,7 +4,7 @@ import {
     loginFunction,
     fetchPostsEditPage,
     createPostFunction,
-    editPostFunction, register
+    editPostFunction, register, burgerMenuSetup
 } from "./functions.js";
 import {
     checkIfLoggedIn,
@@ -35,6 +35,7 @@ function route() {
         case '/FED1-Project-Exam-1/post/make.html':
 
             checkIfLoggedIn();
+            burgerMenuSetup();
             createPostFunction()
             logoutFunction();
             break;
@@ -42,6 +43,7 @@ function route() {
 
             checkIfLoggedIn();
             fetchPostsEditPage();
+            burgerMenuSetup();
             //TODO load more posts
             editPostFunction();
             logoutFunction();
