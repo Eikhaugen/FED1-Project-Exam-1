@@ -1,35 +1,47 @@
-//Burger Menu
-export function burgerMenuSetup(){
-    const body = document.querySelector("body");
-    const burgerMenuToggle = document.querySelector(".burgerMenuToggle");
-    const burgerMenu = document.querySelector(".burgerMenu");
-
-    burgerMenuToggle.addEventListener("click", function(){
-        if (burgerMenu.style.display === "none" || burgerMenu.style.display === "") {
-            burgerMenu.style.display = "flex";
-            body.classList.add("menu-open");
-        } else {
-            burgerMenu.style.display = "none";
-            body.classList.remove("menu-open");
-        }
-    })
-}
-
+import {formatDateTime} from "./utils.js";
 // Function for index.html
 
-export async function fetchPostsInitial() {
-
+export async function fetchPostsInitial(limit = 12, page = 1) {
     try {
-        const response = await fetch("https://v2.api.noroff.dev/blog/posts/Eikhaugen");
+        const response = await fetch(`https://v2.api.noroff.dev/blog/posts/Eikhaugen?limit=${limit}&page=${page}`);
         const result = await response.json();
         const postData = result.data;
-        console.log(postData)
-        displayBlogFeedPosts(postData)
-        //Use counter param to set how many posts display in carousel.
-        displayCarouselPosts(postData, 3)
+        console.log(postData);
+        if (page === 1) {
+            displayBlogFeedPosts(postData);
+        } else {
+            appendPostsToBlogFeed(postData);
+        }
+        displayCarouselPosts(postData, 3);
     } catch (error) {
         console.error('Error fetching posts:', error);
     }
+}
+
+export function loadMorePostsBlogFeed() {
+    let currentPage = 1;
+
+    document.querySelector('.loadMorePostsFeedBTN').addEventListener('click', async function() {
+        currentPage++;
+        const newPosts = await fetchPostsInitial(12, currentPage);
+        appendPostsToBlogFeed(newPosts);
+    });
+}
+
+function appendPostsToBlogFeed(posts) {
+    const blogFeedPostsContainer = document.querySelector(".blogFeedPostsContainer");
+    posts.forEach((post) => {
+        const text = post.body.split(" ");
+        let truncatedText = text.slice(0, 20).join(" ") + "...";
+        const formattedDateTime = formatDateTime(post.created);
+        blogFeedPostsContainer.innerHTML +=
+            `<a class="blogFeedPostCard" href="post/index.html?id=${post.id}" aria-label="navigate to blog post">
+                <img src="${post.media.url}" alt="${post.media.alt}">
+                <h2>${post.title}</h2>
+                <span class="blogFeedPostCardTruncText">${truncatedText}</span>
+                <span class="blogFeedPostCardDate">${formattedDateTime}</span>
+            </a>`;
+    });
 }
 
 function displayBlogFeedPosts(posts) {
@@ -53,18 +65,18 @@ function displayCarouselPosts(posts, count){
     const carouselPostsContainer = document.querySelector(".carouselPostsContainer")
     carouselPostsContainer.innerHTML = '';
     posts.slice(0, count).forEach((post) => {
+        const formattedDateTime = formatDateTime(post.created);
         carouselPostsContainer.innerHTML +=
             `<a class="blogFeedPostCard" href="post/index.html?id=${post.id}" aria-label="navigate to blog post">
                 <img src="${post.media.url}" alt="${post.media.alt}">
                 <h2>${post.title}</h2>
-                <span>${post.created}</span>
+                <span>${formattedDateTime}</span>
             </a>`
     })
 }
 
 
 //Functions for post/index.html
-
 export async function fetchPostByID() {
     const parameterString = window.location.search;
     const searchParameters = new URLSearchParams(parameterString);
@@ -98,7 +110,6 @@ function displayBlogPost(post) {
 
 
 //Functions for account/login.html
-
 export function loginFunction(){
     const loginForm = document.getElementById('loginForm');
     loginForm.addEventListener('submit', login);
@@ -139,21 +150,57 @@ function login(event) {
 
 
 //Functions for post/edit.html
-
-export async function fetchPostsEditPage(){
+export async function fetchPostsEditPage(limit = 12, page = 1) {
     try {
-        const response = await fetch("https://v2.api.noroff.dev/blog/posts/Eikhaugen");
+        const response = await fetch(`https://v2.api.noroff.dev/blog/posts/Eikhaugen?limit=${limit}&page=${page}`);
         const result = await response.json();
         const postData = result.data;
-        console.log(postData)
-        displayPostsEditPage(postData)
+        console.log(postData);
+        if (page === 1) {
+            displayPostsEditPage(postData);
+        } else {
+            appendPostsToEditPage(postData);
+        }
     } catch (error) {
         console.error('Error fetching posts:', error);
     }
 }
 
-function displayPostsEditPage(posts){
-    const postsContainer = document.querySelector(".postsContainer")
+export function loadMorePostsEditPage() {
+    let currentPage = 1;
+
+    document.querySelector('.loadMorePostsEditPageBTN').addEventListener('click', async function() {
+        currentPage++;
+        await fetchPostsEditPage(12, currentPage);
+    });
+}
+
+function appendPostsToEditPage(posts) {
+    const postsContainer = document.querySelector(".postsContainer");
+    posts.forEach((post) => {
+        const text = post.body.split(" ");
+        let truncatedText = text.slice(0, 20).join(" ") + "...";
+        const formattedDateTime = formatDateTime(post.created);
+        postsContainer.innerHTML +=
+            `<div class="postCard">
+                <div class="postCardEdit">
+                    <button class="editPostButton" aria-label="Edit Post" data-id="${post.id}"><i class="fa-regular fa-pen-to-square fa-xl"></i> Edit post</button>
+                    <button class="deletePostButton" aria-label="Delete Post" data-id="${post.id}">Delete post <i class="fa-solid fa-x fa-xl"></i></button>
+                </div>
+                <div class="postCardContent">
+                    <img class="postCardImg" src="${post.media.url}" alt="${post.media.alt}">
+                    <h2 class="postCardTitle">${post.title}</h2>
+                    <p class="postCardTruncText">
+                        ${truncatedText}
+                    </p>
+                    <span class="postCardPublished">${formattedDateTime}</span>
+                </div>
+            </div>`;
+    });
+}
+
+function displayPostsEditPage(posts) {
+    const postsContainer = document.querySelector(".postsContainer");
     postsContainer.innerHTML = '';
     posts.forEach((post) => {
         const text = post.body.split(" ");
@@ -161,21 +208,22 @@ function displayPostsEditPage(posts){
         const formattedDateTime = formatDateTime(post.created);
         postsContainer.innerHTML +=
             `<div class="postCard">
-                    <div class="postCardEdit">
-                        <button class="editPostButton" aria-label="Edit Post" data-id="${post.id}"><i class="fa-regular fa-pen-to-square fa-xl"></i> Edit post</button>
-                        <button class="deletePostButton" aria-label="Delete Post" data-id="${post.id}">Delete post <i class="fa-solid fa-x fa-xl"></i></button>
-                    </div>
-                    <div class="postCardContent">
-                        <img class="postCardImg" src="${post.media.url}" alt="${post.media.alt}">
-                        <h2 class="postCardTitle">${post.title}</h2>
-                        <p class="postCardTruncText">
-                            ${truncatedText}
-                        </p>
-                        <span class="postCardPublished">${formattedDateTime}</span>
-                    </div>
-                </div>`
-    })
+                <div class="postCardEdit">
+                    <button class="editPostButton" aria-label="Edit Post" data-id="${post.id}"><i class="fa-regular fa-pen-to-square fa-xl"></i> Edit post</button>
+                    <button class="deletePostButton" aria-label="Delete Post" data-id="${post.id}">Delete post <i class="fa-solid fa-x fa-xl"></i></button>
+                </div>
+                <div class="postCardContent">
+                    <img class="postCardImg" src="${post.media.url}" alt="${post.media.alt}">
+                    <h2 class="postCardTitle">${post.title}</h2>
+                    <p class="postCardTruncText">
+                        ${truncatedText}
+                    </p>
+                    <span class="postCardPublished">${formattedDateTime}</span>
+                </div>
+            </div>`;
+    });
 }
+
 
 export function editPostFunction() {
     const editPostForm = document.getElementById('editPostForm');
@@ -316,7 +364,6 @@ async function deletePost(postID) {
 
 
 // functions for post/make.html
-
 export function createPostFunction() {
     const createPostForm = document.getElementById('createNewPostForm');
     createPostForm.addEventListener('submit', createPost);
@@ -369,8 +416,6 @@ function createPost(event) {
 
 
 // Functions for account/register.html
-
-// Function to check if all fields are filled
 function checkFieldsFilled() {
     const email = document.getElementById('email').value;
     const name = document.getElementById('name').value;
@@ -385,16 +430,13 @@ function checkFieldsFilled() {
     return true;
 }
 
-// Function to check password complexity
 function checkPasswordComplexity(password) {
     return password.length >= 8;
 }
 
-// Function to handle registration
 export async function register(event) {
     event.preventDefault();
 
-    // Check if all fields are filled
     if (!checkFieldsFilled()) {
         return;
     }
@@ -404,7 +446,6 @@ export async function register(event) {
     const password = document.getElementById('password').value;
     const confirmPassword = document.getElementById('confirmPassword').value;
 
-    // Check password complexity
     const isPasswordComplex = checkPasswordComplexity(password);
 
     if (!isPasswordComplex) {
@@ -412,7 +453,6 @@ export async function register(event) {
         return;
     }
 
-    // Check if password and confirm password match
     if (password !== confirmPassword) {
         alert('Password and confirm password must match.');
         return;
@@ -447,17 +487,4 @@ export async function register(event) {
             alert(error.message);
             console.error('Error:', error.message);
         });
-}
-
-// format time and date string
-function formatDateTime(dateTimeString) {
-    const dateTime = new Date(dateTimeString);
-
-    const year = dateTime.getFullYear();
-    const month = String(dateTime.getMonth() + 1).padStart(2, '0');
-    const day = String(dateTime.getDate()).padStart(2, '0');
-    const hours = String(dateTime.getHours()).padStart(2, '0');
-    const minutes = String(dateTime.getMinutes()).padStart(2, '0');
-
-    return `${year}-${month}-${day} ${hours}:${minutes}`;
 }

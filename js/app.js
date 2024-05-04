@@ -4,11 +4,13 @@ import {
     loginFunction,
     fetchPostsEditPage,
     createPostFunction,
-    editPostFunction, register, burgerMenuSetup
+    editPostFunction,
+    register, loadMorePostsBlogFeed, loadMorePostsEditPage
 } from "./functions.js";
 import {
     checkIfLoggedIn,
-    logoutFunction
+    logoutFunction,
+    burgerMenuSetup
 } from "./utils.js";
 
 function getPathname() {
@@ -21,8 +23,8 @@ function route() {
     switch(pathname) {
         case '/FED1-Project-Exam-1/index.html':
 
-            fetchPostsInitial()
-            // TODO function to load more posts
+            fetchPostsInitial();
+            loadMorePostsBlogFeed();
             // TODO carousel functionality
             // TODO function to reorder posts
             // TODO function to filter by tags?
@@ -30,7 +32,7 @@ function route() {
             break;
         case '/FED1-Project-Exam-1/post/index.html':
 
-            fetchPostByID()
+            fetchPostByID();
             break;
         case '/FED1-Project-Exam-1/post/make.html':
 
@@ -44,7 +46,7 @@ function route() {
             checkIfLoggedIn();
             fetchPostsEditPage();
             burgerMenuSetup();
-            //TODO load more posts
+            loadMorePostsEditPage();
             editPostFunction();
             logoutFunction();
             break;
