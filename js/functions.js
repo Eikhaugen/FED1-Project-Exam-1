@@ -142,8 +142,8 @@ function displayPostsEditPage(posts){
         postsContainer.innerHTML +=
             `<div class="postCard">
                     <div class="postCardEdit">
-                        <button class="editPostButton" aria-label="Edit Post" data-id="${post.id}">Edit post</button>
-                        <button class="deletePostButton" aria-label="Delete Post" data-id="${post.id}">Delete post X</button>
+                        <button class="editPostButton" aria-label="Edit Post" data-id="${post.id}"><i class="fa-regular fa-pen-to-square fa-xl"></i> Edit post</button>
+                        <button class="deletePostButton" aria-label="Delete Post" data-id="${post.id}">Delete post <i class="fa-solid fa-x fa-xl"></i></button>
                     </div>
                     <div class="postCardContent">
                         <img class="postCardImg" src="${post.media.url}" alt="${post.media.alt}">
