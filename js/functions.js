@@ -38,12 +38,13 @@ function displayBlogFeedPosts(posts) {
     posts.forEach((post) => {
         const text = post.body.split(" ");
         let truncatedText = text.slice(0, 20).join(" ") + "...";
+        const formattedDateTime = formatDateTime(post.created);
         blogFeedPostsContainer.innerHTML +=
             `<a class="blogFeedPostCard" href="post/index.html?id=${post.id}" aria-label="navigate to blog post">
                 <img src="${post.media.url}" alt="${post.media.alt}">
                 <h2>${post.title}</h2>
                 <span class="blogFeedPostCardTruncText">${truncatedText}</span>
-                <span class="blogFeedPostCardDate">${post.created}</span>
+                <span class="blogFeedPostCardDate">${formattedDateTime}</span>
             </a>`
     })
 }
@@ -81,6 +82,7 @@ export async function fetchPostByID() {
 
 function displayBlogPost(post) {
     const blogPostContainer = document.querySelector(".blogPostContainer")
+    const formattedDateTime = formatDateTime(post.created);
 
         blogPostContainer.innerHTML =
 `            
@@ -89,7 +91,7 @@ function displayBlogPost(post) {
             <span class="articleImgText">${post.media.alt}</span>
             </div>
             <span class="articleAuthor">Author: ${post.author.name}</span>
-            <span class="articlePublished">Published: ${post.created}</span>
+            <span class="articlePublished">Published: ${formattedDateTime}</span>
             <h1 class="articleH1">${post.title}</h1>
             <p class="articleMainText">${post.body}</p>`
 }
@@ -156,6 +158,7 @@ function displayPostsEditPage(posts){
     posts.forEach((post) => {
         const text = post.body.split(" ");
         let truncatedText = text.slice(0, 20).join(" ") + "...";
+        const formattedDateTime = formatDateTime(post.created);
         postsContainer.innerHTML +=
             `<div class="postCard">
                     <div class="postCardEdit">
@@ -168,7 +171,7 @@ function displayPostsEditPage(posts){
                         <p class="postCardTruncText">
                             ${truncatedText}
                         </p>
-                        <span class="postCardPublished">${post.created}</span>
+                        <span class="postCardPublished">${formattedDateTime}</span>
                     </div>
                 </div>`
     })
@@ -444,4 +447,17 @@ export async function register(event) {
             alert(error.message);
             console.error('Error:', error.message);
         });
+}
+
+// format time and date string
+function formatDateTime(dateTimeString) {
+    const dateTime = new Date(dateTimeString);
+
+    const year = dateTime.getFullYear();
+    const month = String(dateTime.getMonth() + 1).padStart(2, '0');
+    const day = String(dateTime.getDate()).padStart(2, '0');
+    const hours = String(dateTime.getHours()).padStart(2, '0');
+    const minutes = String(dateTime.getMinutes()).padStart(2, '0');
+
+    return `${year}-${month}-${day} ${hours}:${minutes}`;
 }
