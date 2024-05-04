@@ -4,6 +4,7 @@ header{
     background-color: var(--primary);
     display: flex;
     justify-content: space-between;
+    position: relative;
 }
 
 footer{
@@ -15,4 +16,72 @@ footer a, header a{
     height: 100%;
     width: fit-content;
     display: block;
+}
+
+.headerAdminNavDesktop{
+    display: none;
+}
+
+.headerEnd{
+    padding: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.burgerMenu{
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    width: 100vw;
+    height: -o-calc(100vh - 50px);
+    height: -webkit-calc(100vh - 50px);
+    height: -moz-calc(100vh - 50px);
+    background-color: var(--background);
+    z-index: 10;
+    top: 50px;
+    left: 0;
+    padding: 44px 8px;
+    gap: 8px;
+}
+
+.burgerMenuToggle{
+    height: 31px;
+    width: 31px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.burgerMenuCreateNew, .burgerMenuManagePosts, .burgerMenuLogoutBTN{
+    width: 304px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--text-white);
+    font-size: 18px;
+    border-radius: 8px;
+}
+
+.burgerMenuCreateNew, .burgerMenuManagePosts{
+    background-color: var(--secondary);
+}
+
+.burgerMenuCreateNew:hover, .burgerMenuManagePosts:hover, .burgerMenuCreateNew:focus, .burgerMenuManagePosts:focus{
+    background-color: var(--secondary-hover);
+}
+
+.burgerMenuLogoutBTN{
+    background-color: var(--primary);
+    justify-self: end;
+}
+
+.burgerMenuLogoutBTN:hover, .burgerMenuLogoutBTN:focus{
+    background-color: var(--primary-hover);
+}
+
+.burgerMenuGap{
+    flex-grow: 1;
 }

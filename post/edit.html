@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="../js/app.js" type="module" defer></script>
+    <link rel="stylesheet" type="text/css" href="../css/post-edit-make.css">
+    <script src="https://kit.fontawesome.com/84d9821b5f.js" crossorigin="anonymous"></script>
     <title>Title</title>
 </head>
 
@@ -12,15 +14,16 @@
     <header>
         <div class="headerStart">
             <img src="../assets/images/logo/logo.svg" alt="Innovatech solutions logo">
-            <a href="edit.html">Manage posts</a>
-            <a href="make.html">Create new post</a>
+            <a class="headerAdminNavDesktop" href="edit.html">Manage posts</a>
+            <a class="headerAdminNavDesktop" href="make.html">Create new post</a>
         </div>
         <div class="headerEnd">
-            <button class="logoutBTN" aria-label="Log out">X</button>
-            <button class="burgerMenuToggle" aria-label="Toggle Menu">=</button>
-            <div class="burgerMenu">
-                <a href="make.html">Create new post</a>
-                <a href="edit.html">Manage posts</a>
+            <button class="logoutBTN headerAdminNavDesktop" aria-label="Log out"><i class="fa-regular fa-right-from-bracket" style="color: #ffffff;"></i></button>
+            <button class="burgerMenuToggle" aria-label="Toggle Menu"><i class="fa-solid fa-bars fa-xl" style="color: #ffffff;"></i></button>
+            <div class="burgerMenu headerAdminNavMobile">
+                <a class="burgerMenuCreateNew" href="make.html">Create new post</a>
+                <a class="burgerMenuManagePosts" href="edit.html">Manage posts</a>
+                <div class="burgerMenuGap"></div>
                 <button class="burgerMenuLogoutBTN" aria-label="Log out">Log out</button>
             </div>
         </div>
@@ -38,8 +41,6 @@
                 <input id="editImage" type="url" aria-label="Image URL" >
                 <label for="editImageText">Image text:</label>
                 <input id="editImageText" type="text" aria-label="Image text" >
-<!--                <label for="editTags">Tags:</label>-->
-<!--                <input id="editTags" type="text" aria-label="Tags (Comma separated)" required>-->
                 <input id="editSubmit" type="submit" value="Save Changes" aria-label="Save changes" disabled>
                 <button type="button" id="discardChanges">Discard Changes</button>
             </form>
@@ -64,7 +65,7 @@
                     </div>
                 </div>
             </div>
-            <button>See more</button>
+            <button class="managePostsSectionButton">See more</button>
         </section>
     </main>
 
