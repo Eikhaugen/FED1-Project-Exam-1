@@ -12,7 +12,7 @@ export function logoutFunction() {
         window.location.href = '../account/login.html';
     }
     document.addEventListener('click', function(event) {
-        if (event.target.classList.contains('logoutBTN')) {
+        if (event.target.classList.contains('logoutBTN') || event.target.classList.contains('burgerMenuLogoutBTN') || event.target.closest('.logoutBTN')) {
             logout();
         }
     });

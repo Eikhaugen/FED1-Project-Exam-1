@@ -1,11 +1,11 @@
 import {
-    fetchPostsInitial,
+    fetchPosts,
     fetchPostByID,
     loginFunction,
     fetchPostsEditPage,
     createPostFunction,
     editPostFunction,
-    register, loadMorePostsBlogFeed, loadMorePostsEditPage
+    register, loadMorePostsBlogFeed, loadMorePostsEditPage, toggleOptionMenu, reorderPosts
 } from "./functions.js";
 import {
     checkIfLoggedIn,
@@ -14,7 +14,9 @@ import {
 } from "./utils.js";
 
 function getPathname() {
-    return window.location.pathname;
+    const url = new URL(window.location.href);
+    const pathname = url.pathname;
+    return pathname;
 }
 
 function route() {
@@ -23,12 +25,11 @@ function route() {
     switch(pathname) {
         case '/FED1-Project-Exam-1/index.html':
 
-            fetchPostsInitial();
+            fetchPosts();
             loadMorePostsBlogFeed();
-            // TODO carousel functionality
-            // TODO function to reorder posts
-            // TODO function to filter by tags?
-            // TODO function to search?
+            //TODO carousel functionality
+            toggleOptionMenu();
+            reorderPosts();
             break;
         case '/FED1-Project-Exam-1/post/index.html':
 
@@ -38,7 +39,7 @@ function route() {
 
             checkIfLoggedIn();
             burgerMenuSetup();
-            createPostFunction()
+            createPostFunction();
             logoutFunction();
             break;
         case '/FED1-Project-Exam-1/post/edit.html':
@@ -52,7 +53,7 @@ function route() {
             break;
         case '/FED1-Project-Exam-1/account/login.html':
 
-            loginFunction()
+            loginFunction();
             break;
         case '/FED1-Project-Exam-1/account/register.html':
 

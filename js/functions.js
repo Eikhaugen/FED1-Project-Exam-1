@@ -1,46 +1,46 @@
 import {formatDateTime} from "./utils.js";
+import {authorAPI} from "./author.js";
 // Function for index.html
 
-export async function fetchPostsInitial(limit = 12, page = 1) {
+export async function fetchPosts(limit = 12, page = 1, sortOrder = "desc") {
     try {
-        const response = await fetch(`https://v2.api.noroff.dev/blog/posts/Eikhaugen?limit=${limit}&page=${page}`);
+        const response = await fetch(`https://v2.api.noroff.dev/blog/posts/${authorAPI}?limit=${limit}&page=${page}&sort=created&sortOrder=${sortOrder}`);
         const result = await response.json();
         const postData = result.data;
         console.log(postData);
         if (page === 1) {
             displayBlogFeedPosts(postData);
-        } else {
-            appendPostsToBlogFeed(postData);
         }
         displayCarouselPosts(postData, 3);
+        return postData;
     } catch (error) {
         console.error('Error fetching posts:', error);
     }
 }
 
-export function loadMorePostsBlogFeed() {
-    let currentPage = 1;
-
-    document.querySelector('.loadMorePostsFeedBTN').addEventListener('click', async function() {
-        currentPage++;
-        const newPosts = await fetchPostsInitial(12, currentPage);
-        appendPostsToBlogFeed(newPosts);
-    });
-}
-
-function appendPostsToBlogFeed(posts) {
+function appendPostsToBlogFeed(posts, sortOrder) {
     const blogFeedPostsContainer = document.querySelector(".blogFeedPostsContainer");
-    posts.forEach((post) => {
+    const currentPosts = blogFeedPostsContainer.querySelectorAll('.blogFeedPostCard');
+    const currentPostsLength = currentPosts.length;
+
+    posts.forEach((post, index) => {
         const text = post.body.split(" ");
         let truncatedText = text.slice(0, 20).join(" ") + "...";
         const formattedDateTime = formatDateTime(post.created);
-        blogFeedPostsContainer.innerHTML +=
-            `<a class="blogFeedPostCard" href="post/index.html?id=${post.id}" aria-label="navigate to blog post">
-                <img src="${post.media.url}" alt="${post.media.alt}">
-                <h2>${post.title}</h2>
-                <span class="blogFeedPostCardTruncText">${truncatedText}</span>
-                <span class="blogFeedPostCardDate">${formattedDateTime}</span>
-            </a>`;
+        const postElement = document.createElement('a');
+        postElement.classList.add('blogFeedPostCard');
+        postElement.href = `post/index.html?id=${post.id}`;
+        postElement.innerHTML =
+            `<img src="${post.media.url}" alt="${post.media.alt}">
+            <h2>${post.title}</h2>
+            <span class="blogFeedPostCardTruncText">${truncatedText}</span>
+            <span class="blogFeedPostCardDate">${formattedDateTime}</span>`;
+
+        if (sortOrder === 'asc') {
+            blogFeedPostsContainer.insertBefore(postElement, currentPosts[currentPostsLength - index]);
+        } else {
+            blogFeedPostsContainer.appendChild(postElement);
+        }
     });
 }
 
@@ -75,6 +75,107 @@ function displayCarouselPosts(posts, count){
     })
 }
 
+let currentPage = 1;
+let currentSortOrder = 'desc';
+
+let isEventListenerAdded = false;
+
+export function loadMorePostsBlogFeed(sortOrder) {
+    if (currentSortOrder !== sortOrder) {
+        currentSortOrder = sortOrder;
+        currentPage = 1;
+    }
+
+    let loadMoreButton = document.querySelector('.loadMorePostsFeedBTN');
+
+    // Clone the button and replace the original button with the clone
+    let clone = loadMoreButton.cloneNode(true);
+    loadMoreButton.parentNode.replaceChild(clone, loadMoreButton);
+
+    // Add the event listener to the clone only if it hasn't been added before
+    if (!isEventListenerAdded) {
+        clone.addEventListener('click', async function() {
+            currentPage++;
+            const newPosts = await fetchPosts(12, currentPage, currentSortOrder);
+            appendPostsToBlogFeed(newPosts, currentSortOrder);
+        });
+        isEventListenerAdded = true;
+    }
+}
+
+async function fetchPostsBySortOrder(sortOrder) {
+    try {
+        const limit = 12;
+        const page = 1;
+        currentSortOrder = sortOrder; // Update the currentSortOrder
+        currentPage = page; // Update the currentPage
+        const response = await fetch(`https://v2.api.noroff.dev/blog/posts/${authorAPI}?limit=${limit}&page=${page}&sort=created&sortOrder=${sortOrder}`);
+        const result = await response.json();
+        const postData = result.data;
+
+        const blogFeedPostsContainer = document.querySelector(".blogFeedPostsContainer");
+        blogFeedPostsContainer.innerHTML = '';
+
+        displayBlogFeedPosts(postData);
+    } catch (error) {
+        console.error('Error fetching posts:', error);
+    }
+}
+
+export function toggleOptionMenu() {
+    const orderSelectMenuToggle = document.querySelector(".select-button");
+    const orderSelectMenu = document.querySelector(".options-container");
+
+    function closeMenu() {
+        orderSelectMenu.style.display = "none";
+    }
+
+    orderSelectMenuToggle.addEventListener("click", function (event) {
+        event.stopPropagation(); // Prevent the click event from bubbling up
+        if (orderSelectMenu.style.display === "none" || orderSelectMenu.style.display === "") {
+            orderSelectMenu.style.display = "flex";
+        } else {
+            orderSelectMenu.style.display = "none";
+        }
+    });
+
+    document.addEventListener("click", function (event) {
+        const isClickInsideMenu = orderSelectMenu.contains(event.target);
+        const isClickOnToggle = orderSelectMenuToggle.contains(event.target);
+        if (!isClickInsideMenu && !isClickOnToggle) {
+            closeMenu();
+        }
+    });
+}
+
+export function reorderPosts() {
+    const orderSelectMenu = document.querySelector(".options-container");
+    const options = document.querySelectorAll('.option');
+    let sortOrder = "desc";
+
+    options.forEach(option => {
+        option.addEventListener('click', async function () {
+            if (sortOrder !== this.getAttribute('data-value')) {
+                sortOrder = this.getAttribute('data-value');
+               console.log('Selected value:', sortOrder);
+
+                await fetchPostsBySortOrder(sortOrder);
+            }
+
+            orderSelectMenu.style.display = "none";
+        });
+    })
+
+    options.forEach(button => {
+        button.addEventListener('click', function() {
+            options.forEach(btn => {
+                btn.classList.remove('active-option');
+            });
+            this.classList.add('active-option');
+        });
+    });
+}
+
 
 //Functions for post/index.html
 export async function fetchPostByID() {
@@ -82,7 +183,7 @@ export async function fetchPostByID() {
     const searchParameters = new URLSearchParams(parameterString);
     const postID = searchParameters.get("id");
     try {
-        const response = await fetch(`https://v2.api.noroff.dev/blog/posts/Eikhaugen/${postID}`);
+        const response = await fetch(`https://v2.api.noroff.dev/blog/posts/${authorAPI}/${postID}`);
         const result = await response.json();
         const postData = result.data;
         console.log(postData)
@@ -152,7 +253,7 @@ function login(event) {
 //Functions for post/edit.html
 export async function fetchPostsEditPage(limit = 12, page = 1) {
     try {
-        const response = await fetch(`https://v2.api.noroff.dev/blog/posts/Eikhaugen?limit=${limit}&page=${page}`);
+        const response = await fetch(`https://v2.api.noroff.dev/blog/posts/${authorAPI}?limit=${limit}&page=${page}`);
         const result = await response.json();
         const postData = result.data;
         console.log(postData);
@@ -278,7 +379,7 @@ async function editPostFormData(postID) {
     const editPostContainer = document.querySelector(".editPostSection")
 
     try {
-        const response = await fetch(`https://v2.api.noroff.dev/blog/posts/Eikhaugen/${postID}`);
+        const response = await fetch(`https://v2.api.noroff.dev/blog/posts/${authorAPI}/${postID}`);
         if (!response.ok) {
             throw new Error('Failed to fetch post data');
         }
@@ -319,7 +420,7 @@ async function editPostFormSubmit(postID) {
     myHeaders.append("Authorization", `Bearer ${accessToken}`);
 
     try {
-        const response = await fetch(`https://v2.api.noroff.dev/blog/posts/Eikhaugen/${postID}`, {
+        const response = await fetch(`https://v2.api.noroff.dev/blog/posts/${authorAPI}/${postID}`, {
             method: "PUT",
             headers: myHeaders,
             body: requestBody
@@ -343,7 +444,7 @@ async function deletePost(postID) {
     myHeaders.append("Authorization", `Bearer ${accessToken}`);
 
     try {
-        const response = await fetch(`https://v2.api.noroff.dev/blog/posts/Eikhaugen/${postID}`, {
+        const response = await fetch(`https://v2.api.noroff.dev/blog/posts/${authorAPI}/${postID}`, {
             method: "DELETE",
             headers: myHeaders
         });
@@ -397,7 +498,7 @@ function createPost(event) {
         redirect: "follow"
     };
 
-    fetch('https://v2.api.noroff.dev/blog/posts/Eikhaugen', requestOptions)
+    fetch('https://v2.api.noroff.dev/blog/posts/${authorAPI}', requestOptions)
         .then(response => {
             if (!response.ok) {
                 throw new Error('Failed to create post');
@@ -421,9 +522,15 @@ function checkFieldsFilled() {
     const name = document.getElementById('name').value;
     const password = document.getElementById('password').value;
     const confirmPassword = document.getElementById('confirmPassword').value;
+    const namePattern = /^[a-zA-Z0-9_]+$/;
 
     if (!email || !name || !password || !confirmPassword) {
         alert('Please fill in all fields.');
+        return false;
+    }
+
+    if (!namePattern.test(name)) {
+        alert('Name can only contain letters, numbers, and underscores.');
         return false;
     }
 
