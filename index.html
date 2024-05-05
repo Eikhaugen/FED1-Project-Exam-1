@@ -40,7 +40,15 @@
         <section class="blogFeedSection">
             <div class="blogFeedHeader">
                 <h1>The Innovatech Solutions Blog</h1>
-                <button class="filterFeedBTN"><i class="fa-solid fa-bars-filter fa-xl" style="color: #2D848A;"></i></button>
+                <div class="custom-select">
+                    <button id="selectButton" class="select-button" aria-label="Order posts by date">
+                        <i class="fa-solid fa-bars-filter fa-xl" style="color: #2D848A;"></i>
+                    </button>
+                    <div id="optionsContainer" class="options-container">
+                        <button class="option active-option" data-value="desc">Descending</button>
+                        <button class="option" data-value="asc">Ascending</button>
+                    </div>
+                </div>
             </div>
             <div class="blogFeedPostsContainer">
 

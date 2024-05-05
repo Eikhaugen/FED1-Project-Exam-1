@@ -3,7 +3,7 @@
 @import url(header-and-footer.css);
 
 .recentPostsCarousel{
-
+display: none;
 }
 
 .blogFeedSection{
@@ -38,7 +38,7 @@
     justify-content: center;
 }
 
-.filterFeedBTN, .recentPostsCarouselBtnPrevious, .recentPostsCarouselBtnNext, .         loadMorePostsFeedBTN {
+.filterFeedBTN, .recentPostsCarouselBtnPrevious, .recentPostsCarouselBtnNext, .loadMorePostsFeedBTN {
     cursor: pointer;
 }
 
@@ -94,4 +94,62 @@ h2{
 
 .loadMorePostsFeedBTN:hover{
     background-color: var(--secondary-hover);
+}
+
+.select-button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30px;
+    width: 30px;
+    cursor: pointer;
+}
+
+.custom-select{
+    position: relative;
+    height: 31px;
+    width: 31px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.options-container{
+    position: absolute;
+    width: fit-content;
+    height: fit-content;
+    background-color: #ffffff;
+    border: 1px solid var(--captions);
+    right: 5px;
+    top: 30px;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 8px;
+    gap: 4px;
+}
+
+.option{
+    color: var(--text);
+    font-family: roboto, sans-serif;
+    font-size: 16px;
+    border-bottom: 1px solid var(--captions);
+    width: 100%;
+    text-align: center;
+    cursor: pointer;
+}
+
+.option:hover, .option:focus{
+    color: var(--secondary-hover);
+    border-bottom: 1px solid var(--secondary-hover);
+}
+
+.active-option{
+    color: var(--secondary);
+    border-bottom: 1px solid var(--secondary);
+}
+
+@media screen and (min-width: 900px) {
+
 }

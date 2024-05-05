@@ -67,6 +67,7 @@ h2{
 
 .editPostButton, .deletePostButton{
     color: var(--clickable-text);
+    cursor: pointer;
 }
 
 .editPostButton:hover, .editPostButton:focus{
@@ -155,6 +156,7 @@ textarea:hover, textarea:focus-within{
     font-family: "roboto", sans-serif;
     font-weight: 400;
     font-size: 1rem;
+    cursor: pointer;
 }
 
 .loadMorePostsEditPageBTN:hover, .loadMorePostsEditPageBTN:focus, #createNewSubmit:hover, #createNewSubmit:focus, #editSubmit:hover, #editSubmit:focus{

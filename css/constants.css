@@ -33,7 +33,7 @@ button{
 }
 
 a:focus, button:focus{
-    border: 2px solid orange;
+    border: 1px solid #ffffff;
 }
 
 body {
