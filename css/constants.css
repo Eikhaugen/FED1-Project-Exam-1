@@ -38,8 +38,8 @@ a:focus, button:focus{
 
 body {
     background-color: var(--background);
-    min-width: 100vw;
-    min-height: 100vh;
+    width: calc(100vw - (100vw - 100%));
+    min-height: 100dvh;
     display: flex;
     flex-direction: column;
     align-items: center;

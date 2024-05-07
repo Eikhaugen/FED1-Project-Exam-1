@@ -51,7 +51,6 @@ display: none;
 .blogFeedPostCard{
     background-color: #FFFFFF;
     width: 100%;
-    height: fit-content;
     padding: 4px;
     border-radius: 8px;
     display: flex;
@@ -150,6 +149,48 @@ h2{
     border-bottom: 1px solid var(--secondary);
 }
 
-@media screen and (min-width: 900px) {
-
+@media screen and (min-width: 800px) {
+    .blogFeedHeader{
+        height: 64px;
+    }
+    .blogFeedHeader h1{
+        font-size: 48px;
+    }
+    .custom-select{
+        height: 64px;
+        width: 64px;
+    }
+    .select-button{
+        height: 45px;
+        width: 45px;
+    }
+    .fa-bars-filter{
+        font-size: 45px;
+    }
+    .options-container{
+        top: 55px;
+    }
+    .option{
+        font-size: 20px;
+    }
+    .blogFeedPostsContainer{
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+        align-items: stretch;
+    }
+    .blogFeedPostCard{
+        padding: 8px;
+    }
+    .blogFeedPostCard h2{
+        font-size: 32px;
+    }
+    .blogFeedPostCard .blogFeedPostCardTruncText{
+        font-size: 20px;
+    }
+    .blogFeedPostCard .blogFeedPostCardDate{
+        font-size: 16px;
+    }
+    .loadMorePostsFeedBTN{
+        font-size: 18px;
+    }
 }

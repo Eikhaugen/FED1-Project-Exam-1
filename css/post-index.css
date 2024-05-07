@@ -43,3 +43,18 @@ h1{
 .articleMainText {
     font-size: 18px;
 }
+
+@media screen and (min-width: 800px) {
+    h1{
+        font-size: 48px;
+    }
+    .articleImgText{
+        font-size: 18px;
+    }
+.articlePublished, .articleAuthor{
+        font-size: 16px;
+    }
+    .articleMainText {
+        font-size: 20px;
+    }
+}
