@@ -12,7 +12,13 @@ footer{
     height: 50px;
     background-color: var(--footer);
 }
-footer a, header a{
+footer a{
+    height: 100%;
+    width: fit-content;
+    display: block;
+}
+
+.headerLogoImg, .headerLogoLink{
     height: 100%;
     width: fit-content;
     display: block;
@@ -98,5 +104,23 @@ footer a, header a{
     }
     header img, footer img{
         height: 100%;
+    }
+    .headerAdminNavDesktop{
+        display: block;
+        color: var(--text-white);
+        font-size: 20px;
+        padding: 8px;
+    }
+    .burgerMenuToggle{
+        display: none;
+    }
+    .fa-right-from-bracket{
+        cursor: pointer;
+        font-size: 28px;
+    }
+    .headerStart{
+        display: flex;
+        gap: 8px;
+        align-items: flex-end;
     }
 }

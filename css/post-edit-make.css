@@ -3,7 +3,7 @@
 @import url(header-and-footer.css);
 
 main{
-    padding: 8px;
+    padding: 16px;
     width: 100%;
     flex: 1;
 }
@@ -21,16 +21,9 @@ h2{
 }
 
 .editPostSection{
-    position: absolute;
-    overflow-y: scroll;
-    top: 50px;
     left: 0;
     display: none;
-    padding: 8px;
-    width: 100vw;
-    height: -o-calc(100vh - 50px);
-    height: -webkit-calc(100vh - 50px);
-    height: -moz-calc(100vh - 50px);
+    width: 100%;
     background-color: var(--background);
 }
 
@@ -124,6 +117,7 @@ h2{
     color: var(--text);
     width: 100%;
     text-align: left;;
+    font-weight: 500;
 }
 
 textarea{
@@ -176,4 +170,48 @@ textarea:hover, textarea:focus-within{
 
 #discardChanges:hover, #discardChanges:focus{
     background-color: var(--primary-hover);
+}
+
+@media screen and (min-width: 800px) {
+
+    .postsContainer{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    align-items: stretch;
+    }
+
+    .editPostButton, .deletePostButton{
+        font-size: 18px;
+    }
+
+    .postCardTitle{
+        font-size: 32px;
+    }
+
+    .postCardTruncText{
+        font-size: 20px;
+    }
+
+    .loadMorePostsEditPageBTN {
+        font-size: 18px;
+    }
+
+    #editPostForm span{
+     font-size: 32px;
+    }
+
+    #editPostForm label, #createNewPostForm label{
+        font-size: 16px;
+    }
+
+    #createNewPostForm h1{
+        font-size: 32px;
+    }
+    #createNewSubmit{
+        font-size: 18px;
+    }
+    .managePostsSection h1{
+        font-size: 32px;
+    }
+
 }

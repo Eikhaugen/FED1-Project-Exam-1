@@ -190,4 +190,7 @@ h2{
     .blogFeedPostCard .blogFeedPostCardDate{
         font-size: 16px;
     }
+    .loadMorePostsFeedBTN{
+        font-size: 18px;
+    }
 }
