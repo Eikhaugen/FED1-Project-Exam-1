@@ -196,7 +196,7 @@ export async function fetchPostByID() {
 function displayBlogPost(post) {
     const blogPostContainer = document.querySelector(".blogPostContainer")
     const formattedDateTime = formatDateTime(post.created);
-
+    document.title = `Innovatech Solutions Blog - ${post.title}`;
         blogPostContainer.innerHTML =
 `            
             <div class="blogPostImageContainer">
@@ -498,7 +498,7 @@ function createPost(event) {
         redirect: "follow"
     };
 
-    fetch('https://v2.api.noroff.dev/blog/posts/${authorAPI}', requestOptions)
+    fetch(`https://v2.api.noroff.dev/blog/posts/${authorAPI}`, requestOptions)
         .then(response => {
             if (!response.ok) {
                 throw new Error('Failed to create post');
