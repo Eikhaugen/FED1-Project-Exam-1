@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Welcome to the Innovatech Solutions Blog. Stay updated with our latest technology research and development news.">
+    <meta name="author" content="Thomas Eikhaugen">
     <meta name="keywords" content="Innovatech Solutions, Blog, Technology, R&D">
     <script src="js/app.js" type="module" defer></script>
     <script src="https://kit.fontawesome.com/84d9821b5f.js" crossorigin="anonymous"></script>
@@ -20,13 +21,13 @@
         </div>
     </header>
     <main>
-        <div class="recentPostsCarousel">
+        <div class="recentPostsCarousel" role="region" aria-label="Recent posts carousel">
             <div class="carouselPostsContainer">
 
             </div>
             <span class="recentPosts">Recent Posts</span>
             <button class="recentPostsCarouselBtnPrevious" aria-label="Previous post"><i class="fa-solid fa-chevron-left" style="color: #ffffff;"></i></button>
-            <button class="recentPostsCarouselBtnNext" aria-label="Previous post"><i class="fa-solid fa-chevron-right" style="color: #ffffff;"></i></button>
+            <button class="recentPostsCarouselBtnNext" aria-label="Next post"><i class="fa-solid fa-chevron-right" style="color: #ffffff;"></i></button>
             <div class="carouselShadow"></div>
         </div>
         <section class="blogFeedSection">
@@ -37,8 +38,8 @@
                         <i class="fa-solid fa-bars-filter fa-xl" style="color: #2D848A;"></i>
                     </button>
                     <div id="optionsContainer" class="options-container">
-                        <button class="option active-option" data-value="desc">Descending</button>
-                        <button class="option" data-value="asc">Ascending</button>
+                        <button class="option active-option" data-value="desc" aria-label="Order posts in descending order">Descending</button>
+                        <button class="option" data-value="asc" aria-label="Order posts in ascending order">Ascending</button>
                     </div>
                 </div>
             </div>
