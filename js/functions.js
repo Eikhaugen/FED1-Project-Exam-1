@@ -271,7 +271,7 @@ function login(event) {
         .then(data => {
             const accessToken = data.data.accessToken;
             sessionStorage.setItem('accessToken', accessToken);
-            window.location.href = '../post/edit.html';
+            window.location.href = '/FED1-Project-Exam-1/post/edit.html';
         })
         .catch(error => {
             alert(error.message)
@@ -385,7 +385,7 @@ export function editPostFunction() {
     editPostForm.addEventListener('input', enableSubmitButton);
 
     editDiscard.addEventListener('click', function(){
-        window.location.href = '../post/edit.html';
+        window.location.href = '/FED1-Project-Exam-1/post/edit.html';
     })
 
     document.addEventListener('click', function(event) {
@@ -531,7 +531,7 @@ function createPost(event) {
             return response.json();
         })
         .then(data => {
-            window.location.href = '../post/edit.html';
+            window.location.href = '/FED1-Project-Exam-1/post/edit.html';
         })
         .catch(error => {
             alert(error.message);
@@ -611,7 +611,7 @@ export async function register(event) {
         })
         .then(data => {
             alert("Registered successfully, You can now log in ")
-            window.location.href = '../account/login.html';
+            window.location.href = '/FED1-Project-Exam-1/account/login.html';
         })
         .catch(error => {
             alert(error.message);
