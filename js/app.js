@@ -30,6 +30,7 @@ function route() {
 
     switch(pathname) {
         case '/FED1-Project-Exam-1/index':
+        case '/innovatechsolutions.netlify.app':
 
             fetchPosts();
             loadMorePostsBlogFeed();
@@ -37,10 +38,12 @@ function route() {
             reorderPosts();
             break;
         case '/FED1-Project-Exam-1/post/index':
+        case '/innovatechsolutions.netlify.app/post':
 
             fetchPostByID();
             break;
         case '/FED1-Project-Exam-1/post/make':
+        case '/innovatechsolutions.netlify.app/post/make':
 
             checkIfLoggedIn();
             burgerMenuSetup();
@@ -48,6 +51,7 @@ function route() {
             logoutFunction();
             break;
         case '/FED1-Project-Exam-1/post/edit':
+        case '/innovatechsolutions.netlify.app/post/edit':
 
             checkIfLoggedIn();
             fetchPostsEditPage();
@@ -57,10 +61,12 @@ function route() {
             logoutFunction();
             break;
         case '/FED1-Project-Exam-1/account/login':
+        case '/innovatechsolutions.netlify.app/login':
 
             loginFunction();
             break;
         case '/FED1-Project-Exam-1/account/register':
+        case '/innovatechsolutions.netlify.app/register':
 
             document.getElementById('registerSubmit').addEventListener('click', register);
             break;
