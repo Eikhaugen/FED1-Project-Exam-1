@@ -5,36 +5,37 @@ import {
 } from "./utils.js";
 
 function getPathname() {
-    const url = new URL(window.location.href);
-    let pathname = url.pathname;
-    return pathname;
+    return window.location.pathname;
 }
 
 function route() {
     const pathname = getPathname();
+    const repoName = 'FED1-Project-Exam-1'; // Replace with your repository name
 
-    switch(pathname) {
-        case '/FED1-Project-Exam-1/index.html':
-        case '/https://eikhaugen.github.io/FED1-Project-Exam-1/':
+    // Remove leading slash and repository name
+    const path = pathname.replace(`/${repoName}`, '').replace(/^\//, '');
 
+    switch (path) {
+        case '':
+        case 'index.html':
             fetchPosts();
             loadMorePostsBlogFeed();
             toggleOptionMenu();
             reorderPosts();
             break;
-        case '/FED1-Project-Exam-1/post/index.html':
-
+        case 'post':
+            handlePost();
+            break;
+        case 'post/index.html':
             fetchPostByID();
             break;
-        case '/FED1-Project-Exam-1/post/make.html':
-
+        case 'post/make.html':
             checkIfLoggedIn();
             burgerMenuSetup();
             createPostFunction();
             logoutFunction();
             break;
-        case '/FED1-Project-Exam-1/post/edit.html':
-
+        case 'post/edit.html':
             checkIfLoggedIn();
             fetchPostsEditPage();
             burgerMenuSetup();
@@ -42,16 +43,43 @@ function route() {
             editPostFunction();
             logoutFunction();
             break;
-        case '/FED1-Project-Exam-1/account/login.html':
-
+        case 'account/login.html':
             loginFunction();
             break;
-        case '/FED1-Project-Exam-1/account/register.html':
-
+        case 'account/register.html':
             document.getElementById('registerSubmit').addEventListener('click', register);
             break;
         default:
             console.log('Page not found');
+            break;
+    }
+}
+
+function handlePost() {
+    const pathname = getPathname();
+    const postPath = pathname.split('/').slice(-1)[0];
+
+    switch (postPath) {
+        case 'index.html':
+            fetchPostByID();
+            break;
+        case 'ake.html':
+            checkIfLoggedIn();
+            burgerMenuSetup();
+            createPostFunction();
+            logoutFunction();
+            break;
+        case 'edit.html':
+            checkIfLoggedIn();
+            fetchPostsEditPage();
+            burgerMenuSetup();
+            loadMorePostsEditPage();
+            editPostFunction();
+            logoutFunction();
+            break;
+        default:
+            console.log('Page not found');
+            break;
     }
 }
 
