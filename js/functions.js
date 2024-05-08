@@ -7,7 +7,6 @@ export async function fetchPosts(limit = 12, page = 1, sortOrder = "desc") {
         const response = await fetch(`https://v2.api.noroff.dev/blog/posts/${authorAPI}?limit=${limit}&page=${page}&sort=created&sortOrder=${sortOrder}`);
         const result = await response.json();
         const postData = result.data;
-        console.log(postData);
         if (page === 1) {
             displayBlogFeedPosts(postData);
         }
@@ -83,7 +82,6 @@ function carouselFunction(){
     const carouselItems = Array.from(carouselContainer.children);
     const prevButton = document.querySelector('.recentPostsCarouselBtnPrevious');
     const nextButton = document.querySelector('.recentPostsCarouselBtnNext');
-
     let currentIndex = 0;
 
     function updateActiveClass() {
@@ -115,7 +113,6 @@ function carouselFunction(){
     updateActiveClass();
 }
 
-
 let currentPage = 1;
 let currentSortOrder = 'desc';
 let isEventListenerAdded = false;
@@ -127,7 +124,6 @@ export function loadMorePostsBlogFeed(sortOrder) {
     }
 
     let loadMoreButton = document.querySelector('.loadMorePostsFeedBTN');
-
     let clone = loadMoreButton.cloneNode(true);
     loadMoreButton.parentNode.replaceChild(clone, loadMoreButton);
 
@@ -145,12 +141,11 @@ async function fetchPostsBySortOrder(sortOrder) {
     try {
         const limit = 12;
         const page = 1;
-        currentSortOrder = sortOrder; // Update the currentSortOrder
-        currentPage = page; // Update the currentPage
+        currentSortOrder = sortOrder;
+        currentPage = page;
         const response = await fetch(`https://v2.api.noroff.dev/blog/posts/${authorAPI}?limit=${limit}&page=${page}&sort=created&sortOrder=${sortOrder}`);
         const result = await response.json();
         const postData = result.data;
-
         const blogFeedPostsContainer = document.querySelector(".blogFeedPostsContainer");
         blogFeedPostsContainer.innerHTML = '';
 
@@ -169,7 +164,7 @@ export function toggleOptionMenu() {
     }
 
     orderSelectMenuToggle.addEventListener("click", function (event) {
-        event.stopPropagation(); // Prevent the click event from bubbling up
+        event.stopPropagation();
         if (orderSelectMenu.style.display === "none" || orderSelectMenu.style.display === "") {
             orderSelectMenu.style.display = "flex";
         } else {
@@ -195,7 +190,6 @@ export function reorderPosts() {
         option.addEventListener('click', async function () {
             if (sortOrder !== this.getAttribute('data-value')) {
                 sortOrder = this.getAttribute('data-value');
-               console.log('Selected value:', sortOrder);
 
                 await fetchPostsBySortOrder(sortOrder);
             }
@@ -224,7 +218,6 @@ export async function fetchPostByID() {
         const response = await fetch(`https://v2.api.noroff.dev/blog/posts/${authorAPI}/${postID}`);
         const result = await response.json();
         const postData = result.data;
-        console.log(postData)
         displayBlogPost(postData)
     } catch (error) {
         console.error('Error fetching posts:', error);
@@ -278,7 +271,6 @@ function login(event) {
         .then(data => {
             const accessToken = data.data.accessToken;
             sessionStorage.setItem('accessToken', accessToken);
-            console.log('Access Token:', accessToken);
             window.location.href = '../post/edit.html';
         })
         .catch(error => {
@@ -294,7 +286,6 @@ export async function fetchPostsEditPage(limit = 12, page = 1) {
         const response = await fetch(`https://v2.api.noroff.dev/blog/posts/${authorAPI}?limit=${limit}&page=${page}`);
         const result = await response.json();
         const postData = result.data;
-        console.log(postData);
         if (page === 1) {
             displayPostsEditPage(postData);
         } else {
@@ -362,7 +353,6 @@ function displayPostsEditPage(posts) {
             </div>`;
     });
 }
-
 
 export function editPostFunction() {
     const editPostForm = document.getElementById('editPostForm');
@@ -476,7 +466,6 @@ async function editPostFormSubmit(postID) {
 
 async function deletePost(postID) {
     const accessToken = sessionStorage.getItem('accessToken');
-
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
     myHeaders.append("Authorization", `Bearer ${accessToken}`);
@@ -491,7 +480,6 @@ async function deletePost(postID) {
             throw new Error('Failed to delete post');
         }
 
-        console.log('Post deleted successfully');
         alert('Post deleted successfully');
         window.location.reload();
 
@@ -500,7 +488,6 @@ async function deletePost(postID) {
         console.error('Error:', error.message);
     }
 }
-
 
 // functions for post/make.html
 export function createPostFunction() {
@@ -544,7 +531,6 @@ function createPost(event) {
             return response.json();
         })
         .then(data => {
-            console.log('New post created:', data);
             window.location.href = '../post/edit.html';
         })
         .catch(error => {
@@ -552,7 +538,6 @@ function createPost(event) {
             console.error('Error:', error.message);
         });
 }
-
 
 // Functions for account/register.html
 function checkFieldsFilled() {

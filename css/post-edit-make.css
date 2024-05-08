@@ -3,20 +3,20 @@
 @import url(header-and-footer.css);
 
 main{
-    padding: 16px;
+    padding: 1rem;
     width: 100%;
     flex: 1;
 }
 
 h1{
-    font-size: 20px;
+    font-size: 1.25rem;
     font-weight: 500;
     width: 100%;
     text-align: left;
 }
 
 h2{
-    font-size: 20px;
+    font-size: 1.25rem;
     font-weight: 400;
 }
 
@@ -30,7 +30,7 @@ h2{
 .managePostsSection{
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 0.5rem;
     align-items: center;
 }
 
@@ -41,16 +41,16 @@ h2{
 .postsContainer{
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 0.5rem;
 }
 
 .postCard{
     background-color: #ffffff;
-    padding: 8px;
-    border-radius: 8px;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 0.5rem;
 }
 
 .postCardEdit{
@@ -74,33 +74,33 @@ h2{
 .postCardContent{
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 0.5rem; /* 8px */
 }
 
 #createNewPostForm, #editPostForm{
     width: 100%;
     height: fit-content;
     background-color: #FFFFFF;
-    border-radius: 8px;
-    padding: 8px;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 8px;
+    gap: 0.5rem;
 }
 
 #createNewPostForm h1{
-        font-size: 20px;
-        font-weight: 500;
+    font-size: 1.25rem;
+    font-weight: 500;
     color: var(--text);
 }
 
 #createNewTitle, #createNewImage, #createNewImageText, #editTitle, #editImage, #editImageText {
     width: 100%;
-    height: 40px;
+    height: 2.5rem;
     background-color: #D2D2D2;
-    padding: 4px 8px;
-    border-radius: 8px;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.5rem;
     font-family: roboto, sans-serif;
     border: 1px solid #ffffff;
 }
@@ -113,7 +113,7 @@ h2{
 
 #createNewPostForm label, #editPostForm label{
     font-family: roboto, sans-serif;
-    font-size: 16px;
+    font-size: 1rem;
     color: var(--text);
     width: 100%;
     text-align: left;;
@@ -124,8 +124,8 @@ textarea{
     width: 100%;
     height: fit-content;
     background-color: #D2D2D2;
-    padding: 4px 8px;
-    border-radius: 8px;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.5rem;
     font-family: roboto, sans-serif;
     border: 1px solid #ffffff;
 }
@@ -136,14 +136,14 @@ textarea:hover, textarea:focus-within{
 }
 
 .loadMorePostsEditPageBTN, #createNewSubmit, #editSubmit{
-    width: 160px;
-    height: 40px;
+    width: 10rem;
+    height: 2.5rem;
     background-color: var(--secondary);
     display: flex;
     align-items: center;
     justify-content: center;
     color: var(--text-white);
-    border-radius: 8px;
+    border-radius: 0.5rem;
 }
 
 .loadMorePostsEditPageBTN, #createNewSubmit, #editSubmit, #discardChanges{
@@ -158,60 +158,60 @@ textarea:hover, textarea:focus-within{
 }
 
 #discardChanges{
-    width: 160px;
-    height: 40px;
+    width: 10rem;
+    height: 2.5rem;
     background-color: var(--primary);
     display: flex;
     align-items: center;
     justify-content: center;
     color: var(--text-white);
-    border-radius: 8px;
+    border-radius: 0.5rem;
 }
 
 #discardChanges:hover, #discardChanges:focus{
     background-color: var(--primary-hover);
 }
 
-@media screen and (min-width: 800px) {
+@media screen and (min-width: 50rem) {
 
     .postsContainer{
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-    align-items: stretch;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(21.875rem, 1fr));
+        align-items: stretch;
     }
 
     .editPostButton, .deletePostButton{
-        font-size: 18px;
+        font-size: 1.125rem;
     }
 
     .postCardTitle{
-        font-size: 32px;
+        font-size: 2rem;
     }
 
     .postCardTruncText{
-        font-size: 20px;
+        font-size: 1.25rem;
     }
 
     .loadMorePostsEditPageBTN {
-        font-size: 18px;
+        font-size: 1.125rem;
     }
 
     #editPostForm span{
-     font-size: 32px;
+        font-size: 2rem;
     }
 
     #editPostForm label, #createNewPostForm label{
-        font-size: 16px;
+        font-size: 1rem;
     }
 
     #createNewPostForm h1{
-        font-size: 32px;
+        font-size: 2rem;
     }
     #createNewSubmit{
-        font-size: 18px;
+        font-size: 1.125rem;
     }
     .managePostsSection h1{
-        font-size: 32px;
+        font-size: 2rem;
     }
 
 }

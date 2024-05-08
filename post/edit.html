@@ -3,15 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="A page to manage posts.">
+    <meta name="author" content="Thomas Eikhaugen">
+    <meta name="robots" content="noindex, nofollow">
     <script src="../js/app.js" type="module" defer></script>
     <link rel="stylesheet" type="text/css" href="../css/post-edit-make.css">
     <script src="https://kit.fontawesome.com/84d9821b5f.js" crossorigin="anonymous"></script>
-    <title>Title</title>
+    <title>Innovatech solutions - Manage Posts</title>
 </head>
 
 <body>
-
-    <header>
+    <header role="banner" aria-label="Main header">
         <div class="headerStart">
             <img src="../assets/images/logo/logo.svg" alt="Innovatech solutions logo">
             <a class="headerAdminNavDesktop" href="edit.html">Manage posts</a>
@@ -20,7 +23,7 @@
         <div class="headerEnd">
             <button class="logoutBTN headerAdminNavDesktop" aria-label="Log out"><i class="fa-regular fa-right-from-bracket" style="color: #ffffff;"></i></button>
             <button class="burgerMenuToggle" aria-label="Toggle Menu"><i class="fa-solid fa-bars fa-xl" style="color: #ffffff;"></i></button>
-            <div class="burgerMenu headerAdminNavMobile">
+            <div class="burgerMenu headerAdminNavMobile" role="navigation" aria-label="Mobile navigation">
                 <a class="burgerMenuCreateNew" href="make.html">Create new post</a>
                 <a class="burgerMenuManagePosts" href="edit.html">Manage posts</a>
                 <div class="burgerMenuGap"></div>
@@ -29,9 +32,9 @@
         </div>
     </header>
 
-    <main>
-        <section class="editPostSection">
-            <form id="editPostForm">
+    <main role="main" aria-label="Main content">
+        <section class="editPostSection" role="region" aria-label="Edit post section">
+            <form id="editPostForm" aria-labelledby="editPostTitle">
                 <span>Edit post</span>
                 <label for="editTitle">Title:</label>
                 <input id="editTitle" type="text" aria-label="Title" required>
@@ -46,7 +49,7 @@
             </form>
         </section>
 
-        <section class="managePostsSection">
+        <section class="managePostsSection" role="region" aria-label="Manage posts section">
             <h1>Manage posts</h1>
             <div class="postsContainer">
                 <div class="postCard" data-id="${post.id}">
@@ -68,11 +71,8 @@
             <button class="loadMorePostsEditPageBTN">Load more</button>
         </section>
     </main>
-
     <footer>
         <img src="../assets/images/logo/logo-w.svg" alt="Innovates solutions logo">
     </footer>
-
 </body>
-
 </html>

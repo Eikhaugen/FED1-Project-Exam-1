@@ -3,11 +3,11 @@
 @import url(header-and-footer.css);
 
 .blogFeedSection{
-    padding: 8px;
+    padding: 0.5rem;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 8px;
+    gap: 0.5rem;
 }
 
 .blogFeedHeader{
@@ -19,16 +19,16 @@
 .blogFeedHeader h1{
     background-color: var(--primary);
     color: var(--text-white);
-    border-radius: 8px;
-    padding: 4px;
+    border-radius: 0.5rem;
+    padding: 0.25rem;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 .filterFeedBTN{
-    width: 31px;
-    height: 31px;
+    width: 1.9375rem;
+    height: 1.9375rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -41,16 +41,16 @@
 .blogFeedPostsContainer{
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 0.5rem;
 }
 
 .blogFeedPostCard, .carouselPostCard{
     background-color: #FFFFFF;
-    padding: 4px;
-    border-radius: 8px;
+    padding: 0.25rem;
+    border-radius: 0.5rem;
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: 0.25rem;
     z-index: 1;
 }
 
@@ -60,7 +60,7 @@
 }
 
 .carouselPostCard {
-    max-width: 400px;
+    max-width: 25rem;
     height: 100%;
     flex: 0 0 85%;
     transition: transform 0.5s;
@@ -91,7 +91,7 @@
     width: 100%;
     height: fit-content;
     position: relative;
-    padding: 32px;
+    padding: 2rem;
 }
 
 .carouselShadow{
@@ -101,7 +101,6 @@
     background: rgba(0, 0, 0, 0.30);
     z-index: 3;
     top: 0;
-
 }
 
 .recentPostsCarouselBtnNext, .recentPostsCarouselBtnPrevious{
@@ -110,13 +109,13 @@
     top: 50%;
     z-index: 5;
     background-color: var(--secondary);
-    width: 40px;
-    height: 64px;
+    width: 2.5rem;
+    height: 4rem;
     display: flex;
     justify-content: center;
     align-items: center;
     color: var(--text-white);
-    font-size: 24px;
+    font-size: 1.5rem;
     cursor: pointer;
 }
 .recentPostsCarouselBtnNext:hover, .recentPostsCarouselBtnPrevious:hover{
@@ -124,24 +123,24 @@
 }
 .recentPostsCarouselBtnNext{
     right: 0;
-    border-top-left-radius: 8px;
-    border-bottom-left-radius: 8px;
+    border-top-left-radius: 0.5rem;
+    border-bottom-left-radius: 0.5rem;
 }
 .recentPostsCarouselBtnPrevious{
     left: 0;
-    border-top-right-radius: 8px;
-    border-bottom-right-radius: 8px;
+    border-top-right-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
 }
 
 .recentPosts{
     background-color: #ffffff;
-padding: 4px 12px;
-border-radius: 16px;
+    padding: 0.25rem 0.75rem;
+    border-radius: 1rem;
     position: absolute;
-    top: 16px;
-    left: 16px;
+    top: 1rem;
+    left: 1rem;
     z-index: 6;
-    font-size: 16px;
+    font-size: 1rem;
     font-weight: 500;
 }
 
@@ -150,12 +149,12 @@ border-radius: 16px;
 }
 
 .blogFeedPostCardDate{
-    font-size: 13px;
+    font-size: 0.8125rem;
     color: var(--captions);
 }
 
 h2{
-    font-size: 24px;
+    font-size: 1.5rem;
     font-family: "Roboto", sans-serif;
     font-weight: 700;
     color: var(--text);
@@ -163,19 +162,19 @@ h2{
 
 .blogFeedPostCardTruncText{
     font-family: roboto, sans-serif;
-    font-size: 18px;
+    font-size: 1.125rem;
     color: var(--text);
 }
 
 .loadMorePostsFeedBTN{
     background-color: var(--secondary);
     color: var(--text-white);
-    height: 40px;
-    width: 200px;
+    height: 2.5rem;
+    width: 12.5rem;
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 8px;
+    border-radius: 0.5rem;
 }
 
 .loadMorePostsFeedBTN:hover{
@@ -186,19 +185,18 @@ h2{
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 30px;
-    width: 30px;
+    height: 1.875rem;
+    width: 1.875rem;
     cursor: pointer;
 }
 
 .custom-select{
     position: relative;
-    height: 31px;
-    width: 31px;
+    height: 1.9375rem;
+    width: 1.9375rem;
     display: flex;
     justify-content: center;
     align-items: center;
-
 }
 .options-container{
     position: absolute;
@@ -206,21 +204,21 @@ h2{
     height: fit-content;
     background-color: #ffffff;
     border: 1px solid var(--captions);
-    right: 5px;
-    top: 30px;
+    right: 0.3125rem;
+    top: 1.875rem;
     display: none;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 8px;
-    gap: 4px;
+    padding: 0.5rem;
+    gap: 0.25rem;
     z-index: 5;
 }
 
 .option{
     color: var(--text);
     font-family: roboto, sans-serif;
-    font-size: 16px;
+    font-size: 1rem;
     border-bottom: 1px solid var(--captions);
     width: 100%;
     text-align: center;
@@ -237,48 +235,48 @@ h2{
     border-bottom: 1px solid var(--secondary);
 }
 
-@media screen and (min-width: 800px) {
+@media screen and (min-width: 50rem) {
     .blogFeedHeader{
-        height: 64px;
+        height: 4rem;
     }
     .blogFeedHeader h1{
-        font-size: 48px;
+        font-size: 3rem;
     }
     .custom-select{
-        height: 64px;
-        width: 64px;
+        height: 4rem;
+        width: 4rem;
     }
     .select-button{
-        height: 45px;
-        width: 45px;
+        height: 2.8125rem;
+        width: 2.8125rem;
     }
     .fa-bars-filter{
-        font-size: 45px;
+        font-size: 2.8125rem;
     }
     .options-container{
-        top: 55px;
+        top: 3.4375rem;
     }
     .option{
-        font-size: 20px;
+        font-size: 1.25rem;
     }
     .blogFeedPostsContainer{
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(21.875rem, 1fr)); /* 350px */
         align-items: stretch;
     }
     .blogFeedPostCard{
-        padding: 8px;
+        padding: 0.5rem;
     }
     .blogFeedPostCard h2{
-        font-size: 32px;
+        font-size: 2rem;
     }
     .blogFeedPostCard .blogFeedPostCardTruncText{
-        font-size: 20px;
+        font-size: 1.25rem;
     }
     .blogFeedPostCard .blogFeedPostCardDate{
-        font-size: 16px;
+        font-size: 1rem;
     }
     .loadMorePostsFeedBTN{
-        font-size: 18px;
+        font-size: 1.125rem;
     }
 }
