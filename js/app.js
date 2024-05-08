@@ -6,7 +6,20 @@ import {
 
 function getPathname() {
     const url = new URL(window.location.href);
-    const pathname = url.pathname;
+    let pathname = url.pathname;
+
+    switch (window.location.host) {
+        case 'localhost':
+        case '127.0.0.1':
+            pathname = pathname.replace('/my-local-project', '/FED1-Project-Exam-1');
+            break;
+        case 'innovatechsolutions.netlify.app':
+            pathname = pathname.replace('/innovatechsolutions.netlify.app', '/FED1-Project-Exam-1');
+            break;
+        default:
+            break;
+    }
+
     return pathname;
 }
 
