@@ -9,9 +9,11 @@ export async function fetchPosts(limit = 12, page = 1, sortOrder = "desc") {
         const postData = result.data;
         if (page === 1) {
             displayBlogFeedPosts(postData);
+            displayCarouselPosts(postData, 3);
+            carouselFunction();
+        } else {
+            appendPostsToBlogFeed(postData, sortOrder);
         }
-        displayCarouselPosts(postData, 3);
-        carouselFunction()
         return postData;
     } catch (error) {
         console.error('Error fetching posts:', error);
@@ -207,7 +209,6 @@ export function reorderPosts() {
         });
     });
 }
-
 
 //Functions for post/index.html
 export async function fetchPostByID() {
