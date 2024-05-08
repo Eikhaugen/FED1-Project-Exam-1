@@ -1,16 +1,7 @@
-import {
-    fetchPosts,
-    fetchPostByID,
-    loginFunction,
-    fetchPostsEditPage,
-    createPostFunction,
-    editPostFunction,
-    register, loadMorePostsBlogFeed, loadMorePostsEditPage, toggleOptionMenu, reorderPosts
+import {fetchPosts, fetchPostByID, loginFunction, fetchPostsEditPage, createPostFunction, editPostFunction, register, loadMorePostsBlogFeed, loadMorePostsEditPage, toggleOptionMenu, reorderPosts
 } from "./functions.js";
 import {
-    checkIfLoggedIn,
-    logoutFunction,
-    burgerMenuSetup
+    checkIfLoggedIn, logoutFunction, burgerMenuSetup
 } from "./utils.js";
 
 function getPathname() {
@@ -27,7 +18,6 @@ function route() {
 
             fetchPosts();
             loadMorePostsBlogFeed();
-            //TODO carousel functionality
             toggleOptionMenu();
             reorderPosts();
             break;

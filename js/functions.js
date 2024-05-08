@@ -1,7 +1,7 @@
 import {formatDateTime} from "./utils.js";
 import {authorAPI} from "./author.js";
-// Function for index.html
 
+// Functions for index.html
 export async function fetchPosts(limit = 12, page = 1, sortOrder = "desc") {
     try {
         const response = await fetch(`https://v2.api.noroff.dev/blog/posts/${authorAPI}?limit=${limit}&page=${page}&sort=created&sortOrder=${sortOrder}`);
@@ -12,6 +12,7 @@ export async function fetchPosts(limit = 12, page = 1, sortOrder = "desc") {
             displayBlogFeedPosts(postData);
         }
         displayCarouselPosts(postData, 3);
+        carouselFunction()
         return postData;
     } catch (error) {
         console.error('Error fetching posts:', error);
@@ -63,21 +64,60 @@ function displayBlogFeedPosts(posts) {
 
 function displayCarouselPosts(posts, count){
     const carouselPostsContainer = document.querySelector(".carouselPostsContainer")
+    let i = 0;
     carouselPostsContainer.innerHTML = '';
     posts.slice(0, count).forEach((post) => {
+        i++;
         const formattedDateTime = formatDateTime(post.created);
         carouselPostsContainer.innerHTML +=
-            `<a class="blogFeedPostCard" href="post/index.html?id=${post.id}" aria-label="navigate to blog post">
+            `<a class="carouselPostCard" href="post/index.html?id=${post.id}" aria-label="navigate to blog post">
                 <img src="${post.media.url}" alt="${post.media.alt}">
                 <h2>${post.title}</h2>
-                <span>${formattedDateTime}</span>
+                <span class="blogFeedPostCardDate">${formattedDateTime}</span>
             </a>`
     })
 }
 
+function carouselFunction(){
+    const carouselContainer = document.querySelector('.carouselPostsContainer');
+    const carouselItems = Array.from(carouselContainer.children);
+    const prevButton = document.querySelector('.recentPostsCarouselBtnPrevious');
+    const nextButton = document.querySelector('.recentPostsCarouselBtnNext');
+
+    let currentIndex = 0;
+
+    function updateActiveClass() {
+        carouselItems.forEach((item, index) => {
+            item.classList.remove('carouselPostCardActive', 'carouselPostCardLeft', 'carouselPostCardRight');
+            if (index === currentIndex) {
+                item.classList.add('carouselPostCardActive');
+                item.style.height = "100%";
+            } else if (index === (currentIndex + 1) % carouselItems.length) {
+                item.classList.add('carouselPostCardRight');
+                item.style.height = "90%";
+            } else if (index === (currentIndex - 1 + carouselItems.length) % carouselItems.length) {
+                item.classList.add('carouselPostCardLeft');
+                item.style.height = "90%";
+            }
+        });
+    }
+
+    prevButton.addEventListener('click', () => {
+        currentIndex = (currentIndex - 1 + carouselItems.length) % carouselItems.length;
+        updateActiveClass();
+    });
+
+    nextButton.addEventListener('click', () => {
+        currentIndex = (currentIndex + 1) % carouselItems.length;
+        updateActiveClass();
+    });
+
+    updateActiveClass();
+}
+
+
 let currentPage = 1;
 let currentSortOrder = 'desc';
-
 let isEventListenerAdded = false;
 
 export function loadMorePostsBlogFeed(sortOrder) {
@@ -88,11 +128,9 @@ export function loadMorePostsBlogFeed(sortOrder) {
 
     let loadMoreButton = document.querySelector('.loadMorePostsFeedBTN');
 
-    // Clone the button and replace the original button with the clone
     let clone = loadMoreButton.cloneNode(true);
     loadMoreButton.parentNode.replaceChild(clone, loadMoreButton);
 
-    // Add the event listener to the clone only if it hasn't been added before
     if (!isEventListenerAdded) {
         clone.addEventListener('click', async function() {
             currentPage++;
