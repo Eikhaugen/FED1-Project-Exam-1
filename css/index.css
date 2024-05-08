@@ -2,10 +2,6 @@
 @import url(constants.css);
 @import url(header-and-footer.css);
 
-.recentPostsCarousel{
-display: none;
-}
-
 .blogFeedSection{
     padding: 8px;
     display: flex;
@@ -48,17 +44,108 @@ display: none;
     gap: 8px;
 }
 
-.blogFeedPostCard{
+.blogFeedPostCard, .carouselPostCard{
     background-color: #FFFFFF;
-    width: 100%;
     padding: 4px;
     border-radius: 8px;
     display: flex;
     flex-direction: column;
     gap: 4px;
+    z-index: 1;
 }
 
-.blogFeedPostCard img, .blogFeedPostCard h2, .blogFeedPostCard span{
+.recentPostsCarousel{
+    position: relative;
+    height: fit-content;
+}
+
+.carouselPostCard {
+    max-width: 400px;
+    height: 100%;
+    flex: 0 0 85%;
+    transition: transform 0.5s;
+    filter: brightness(90%);
+}
+
+.carouselPostCardActive {
+    transform: scale(1.1);
+    filter: brightness(100%);
+    z-index: 5;
+}
+
+.carouselPostCardLeft{
+    transform: translateX(-90%);
+    position: absolute;
+}
+
+.carouselPostCardRight{
+    transform: translateX(90%);
+    position: absolute;
+}
+
+.carouselPostsContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    width: 100%;
+    height: fit-content;
+    position: relative;
+    padding: 32px;
+}
+
+.carouselShadow{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.30);
+    z-index: 3;
+    top: 0;
+
+}
+
+.recentPostsCarouselBtnNext, .recentPostsCarouselBtnPrevious{
+    position: absolute;
+    right: 0;
+    top: 50%;
+    z-index: 5;
+    background-color: var(--secondary);
+    width: 40px;
+    height: 64px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--text-white);
+    font-size: 24px;
+    cursor: pointer;
+}
+.recentPostsCarouselBtnNext:hover, .recentPostsCarouselBtnPrevious:hover{
+    background-color: var(--secondary-hover);
+}
+.recentPostsCarouselBtnNext{
+    right: 0;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+}
+.recentPostsCarouselBtnPrevious{
+    left: 0;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+.recentPosts{
+    background-color: #ffffff;
+padding: 4px 12px;
+border-radius: 16px;
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    z-index: 6;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.blogFeedPostCard img, .blogFeedPostCard h2, .blogFeedPostCard span, .blogFeedPostCard{
     width: 100%;
 }
 
@@ -127,6 +214,7 @@ h2{
     align-items: center;
     padding: 8px;
     gap: 4px;
+    z-index: 5;
 }
 
 .option{
