@@ -7,21 +7,6 @@ import {
 function getPathname() {
     const url = new URL(window.location.href);
     let pathname = url.pathname;
-
-    // Check the host
-    switch (window.location.host) {
-        case 'localhost':
-        case '127.0.0.1':
-            pathname = pathname.replace('/my-local-project', '/FED1-Project-Exam-1');
-            break;
-        case 'innovatechsolutions.netlify.app':
-            pathname = pathname.replace('/innovatechsolutions.netlify.app', '/FED1-Project-Exam-1');
-            pathname = pathname.replace('.html', '');
-            break;
-        default:
-            break;
-    }
-
     return pathname;
 }
 
@@ -29,25 +14,25 @@ function route() {
     const pathname = getPathname();
 
     switch(pathname) {
-        case '/FED1-Project-Exam-1/index':
+        case '/FED1-Project-Exam-1/index.html':
 
             fetchPosts();
             loadMorePostsBlogFeed();
             toggleOptionMenu();
             reorderPosts();
             break;
-        case '/FED1-Project-Exam-1/post/index':
+        case '/FED1-Project-Exam-1/post/index.html':
 
             fetchPostByID();
             break;
-        case '/FED1-Project-Exam-1/post/make':
+        case '/FED1-Project-Exam-1/post/make.html':
 
             checkIfLoggedIn();
             burgerMenuSetup();
             createPostFunction();
             logoutFunction();
             break;
-        case '/FED1-Project-Exam-1/post/edit':
+        case '/FED1-Project-Exam-1/post/edit.html':
 
             checkIfLoggedIn();
             fetchPostsEditPage();
@@ -56,11 +41,11 @@ function route() {
             editPostFunction();
             logoutFunction();
             break;
-        case '/FED1-Project-Exam-1/account/login':
+        case '/FED1-Project-Exam-1/account/login.html':
 
             loginFunction();
             break;
-        case '/FED1-Project-Exam-1/account/register':
+        case '/FED1-Project-Exam-1/account/register.html':
 
             document.getElementById('registerSubmit').addEventListener('click', register);
             break;
