@@ -10,9 +10,8 @@ function getPathname() {
 
 function route() {
     const pathname = getPathname();
-    const repoName = 'FED1-Project-Exam-1'; // Replace with your repository name
+    const repoName = 'FED1-Project-Exam-1';
 
-    // Remove leading slash and repository name
     const path = pathname.replace(`/${repoName}`, '').replace(/^\//, '');
 
     switch (path) {
