@@ -8,6 +8,7 @@ function getPathname() {
     const url = new URL(window.location.href);
     let pathname = url.pathname;
 
+    // Check the host
     switch (window.location.host) {
         case 'localhost':
         case '127.0.0.1':
@@ -15,6 +16,7 @@ function getPathname() {
             break;
         case 'innovatechsolutions.netlify.app':
             pathname = pathname.replace('/innovatechsolutions.netlify.app', '/FED1-Project-Exam-1');
+            pathname = pathname.replace('.html', '');
             break;
         default:
             break;
@@ -27,25 +29,25 @@ function route() {
     const pathname = getPathname();
 
     switch(pathname) {
-        case '/FED1-Project-Exam-1/index.html':
+        case '/FED1-Project-Exam-1/index':
 
             fetchPosts();
             loadMorePostsBlogFeed();
             toggleOptionMenu();
             reorderPosts();
             break;
-        case '/FED1-Project-Exam-1/post/index.html':
+        case '/FED1-Project-Exam-1/post/index':
 
             fetchPostByID();
             break;
-        case '/FED1-Project-Exam-1/post/make.html':
+        case '/FED1-Project-Exam-1/post/make':
 
             checkIfLoggedIn();
             burgerMenuSetup();
             createPostFunction();
             logoutFunction();
             break;
-        case '/FED1-Project-Exam-1/post/edit.html':
+        case '/FED1-Project-Exam-1/post/edit':
 
             checkIfLoggedIn();
             fetchPostsEditPage();
@@ -54,11 +56,11 @@ function route() {
             editPostFunction();
             logoutFunction();
             break;
-        case '/FED1-Project-Exam-1/account/login.html':
+        case '/FED1-Project-Exam-1/account/login':
 
             loginFunction();
             break;
-        case '/FED1-Project-Exam-1/account/register.html':
+        case '/FED1-Project-Exam-1/account/register':
 
             document.getElementById('registerSubmit').addEventListener('click', register);
             break;
