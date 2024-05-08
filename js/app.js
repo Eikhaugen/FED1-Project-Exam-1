@@ -15,6 +15,7 @@ function route() {
 
     switch(pathname) {
         case '/FED1-Project-Exam-1/index.html':
+        case '/https://eikhaugen.github.io/FED1-Project-Exam-1/':
 
             fetchPosts();
             loadMorePostsBlogFeed();
