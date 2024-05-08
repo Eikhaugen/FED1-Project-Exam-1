@@ -79,6 +79,7 @@ h1{
     font-family: roboto, sans-serif;
     font-size: 1.125rem;
     cursor: pointer;
+    text-align: center;
 }
 
 #loginSubmit:hover, #loginSubmit:focus, #registerSubmit:hover, #registerSubmit:focus{

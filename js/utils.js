@@ -2,14 +2,14 @@ export function checkIfLoggedIn() {
     const accessToken = sessionStorage.getItem('accessToken');
 
     if (!accessToken || accessToken.trim() === '') {
-        window.location.href = '../account/login.html';
+        window.location.href = '/FED1-Project-Exam-1/account/login.html';
     }
 }
 
 export function logoutFunction() {
     function logout() {
         sessionStorage.removeItem('accessToken');
-        window.location.href = '../account/login.html';
+        window.location.href = '/FED1-Project-Exam-1/account/login.html';
     }
     document.addEventListener('click', function(event) {
         if (event.target.classList.contains('logoutBTN') || event.target.classList.contains('burgerMenuLogoutBTN') || event.target.closest('.logoutBTN')) {
