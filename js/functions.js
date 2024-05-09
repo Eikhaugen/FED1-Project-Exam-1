@@ -11,8 +11,6 @@ export async function fetchPosts(limit = 12, page = 1, sortOrder = "desc") {
             displayBlogFeedPosts(postData);
             displayCarouselPosts(postData, 3);
             carouselFunction();
-        } else {
-            appendPostsToBlogFeed(postData, sortOrder);
         }
         return postData;
     } catch (error) {
@@ -128,6 +126,8 @@ export function loadMorePostsBlogFeed(sortOrder) {
     let loadMoreButton = document.querySelector('.loadMorePostsFeedBTN');
     let clone = loadMoreButton.cloneNode(true);
     loadMoreButton.parentNode.replaceChild(clone, loadMoreButton);
+
+    isEventListenerAdded = false;
 
     if (!isEventListenerAdded) {
         clone.addEventListener('click', async function() {
