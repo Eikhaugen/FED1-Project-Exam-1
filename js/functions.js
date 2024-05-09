@@ -18,12 +18,10 @@ export async function fetchPosts(limit = 12, page = 1, sortOrder = "desc") {
     }
 }
 
-function appendPostsToBlogFeed(posts, sortOrder) {
+function appendPostsToBlogFeed(posts) {
     const blogFeedPostsContainer = document.querySelector(".blogFeedPostsContainer");
-    const currentPosts = blogFeedPostsContainer.querySelectorAll('.blogFeedPostCard');
-    const currentPostsLength = currentPosts.length;
 
-    posts.forEach((post, index) => {
+    posts.forEach((post) => {
         const text = post.body.split(" ");
         let truncatedText = text.slice(0, 20).join(" ") + "...";
         const formattedDateTime = formatDateTime(post.created);
@@ -36,11 +34,7 @@ function appendPostsToBlogFeed(posts, sortOrder) {
             <span class="blogFeedPostCardTruncText">${truncatedText}</span>
             <span class="blogFeedPostCardDate">${formattedDateTime}</span>`;
 
-        if (sortOrder === 'asc') {
-            blogFeedPostsContainer.insertBefore(postElement, currentPosts[currentPostsLength - index]);
-        } else {
-            blogFeedPostsContainer.appendChild(postElement);
-        }
+        blogFeedPostsContainer.appendChild(postElement);
     });
 }
 
