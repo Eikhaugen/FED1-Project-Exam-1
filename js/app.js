@@ -62,7 +62,7 @@ function handlePost() {
         case 'index.html':
             fetchPostByID();
             break;
-        case 'ake.html':
+        case 'make.html':
             checkIfLoggedIn();
             burgerMenuSetup();
             createPostFunction();

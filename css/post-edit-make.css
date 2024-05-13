@@ -144,6 +144,7 @@ textarea:hover, textarea:focus-within{
     justify-content: center;
     color: var(--text-white);
     border-radius: 0.5rem;
+    text-align: center;
 }
 
 .loadMorePostsEditPageBTN, #createNewSubmit, #editSubmit, #discardChanges{
