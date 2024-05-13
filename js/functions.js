@@ -55,7 +55,7 @@ function displayBlogFeedPosts(posts) {
     })
 }
 
-function displayCarouselPosts(posts, count){
+function displayCarouselPosts(posts, count) {
     const carouselPostsContainer = document.querySelector(".carouselPostsContainer")
     let i = 0;
     carouselPostsContainer.innerHTML = '';
@@ -71,7 +71,7 @@ function displayCarouselPosts(posts, count){
     })
 }
 
-function carouselFunction(){
+function carouselFunction() {
     const carouselContainer = document.querySelector('.carouselPostsContainer');
     const carouselItems = Array.from(carouselContainer.children);
     const prevButton = document.querySelector('.recentPostsCarouselBtnPrevious');
@@ -124,7 +124,7 @@ export function loadMorePostsBlogFeed(sortOrder) {
     isEventListenerAdded = false;
 
     if (!isEventListenerAdded) {
-        clone.addEventListener('click', async function() {
+        clone.addEventListener('click', async function () {
             currentPage++;
             const newPosts = await fetchPosts(12, currentPage, currentSortOrder);
             appendPostsToBlogFeed(newPosts, currentSortOrder);
@@ -195,7 +195,7 @@ export function reorderPosts() {
     })
 
     options.forEach(button => {
-        button.addEventListener('click', function() {
+        button.addEventListener('click', function () {
             options.forEach(btn => {
                 btn.classList.remove('active-option');
             });
@@ -223,8 +223,8 @@ function displayBlogPost(post) {
     const blogPostContainer = document.querySelector(".blogPostContainer")
     const formattedDateTime = formatDateTime(post.created);
     document.title = `Innovatech Solutions Blog - ${post.title}`;
-        blogPostContainer.innerHTML =
-`            
+    blogPostContainer.innerHTML =
+        `            
             <div class="blogPostImageContainer">
             <img class="articleImg" src="${post.media.url}" alt="${post.media.alt}">
             <span class="articleImgText">${post.media.alt}</span>
@@ -237,7 +237,7 @@ function displayBlogPost(post) {
 
 
 //Functions for account/login.html
-export function loginFunction(){
+export function loginFunction() {
     const loginForm = document.getElementById('loginForm');
     loginForm.addEventListener('submit', login);
 }
@@ -294,7 +294,7 @@ export async function fetchPostsEditPage(limit = 12, page = 1) {
 export function loadMorePostsEditPage() {
     let currentPage = 1;
 
-    document.querySelector('.loadMorePostsEditPageBTN').addEventListener('click', async function() {
+    document.querySelector('.loadMorePostsEditPageBTN').addEventListener('click', async function () {
         currentPage++;
         await fetchPostsEditPage(12, currentPage);
     });
@@ -355,14 +355,14 @@ export function editPostFunction() {
     const editDiscard = document.getElementById("discardChanges");
     let postID = "";
 
-    document.addEventListener('click', function(event) {
+    document.addEventListener('click', function (event) {
         if (event.target.classList.contains('editPostButton')) {
             postID = event.target.dataset.id;
             editPostFormData(postID);
         }
     });
 
-    editSubmit.addEventListener('click', function(event) {
+    editSubmit.addEventListener('click', function (event) {
         event.preventDefault();
         editPostFormSubmit(postID)
             .then(() => {
@@ -371,7 +371,8 @@ export function editPostFunction() {
             .catch(error => {
                 console.error('Error:', error.message);
                 alert(error.message)
-            })})
+            })
+    })
 
     function enableSubmitButton() {
         editSubmit.disabled = false;
@@ -379,11 +380,11 @@ export function editPostFunction() {
 
     editPostForm.addEventListener('input', enableSubmitButton);
 
-    editDiscard.addEventListener('click', function(){
+    editDiscard.addEventListener('click', function () {
         window.location.href = '/FED1-Project-Exam-1/post/edit.html';
     })
 
-    document.addEventListener('click', function(event) {
+    document.addEventListener('click', function (event) {
         if (event.target.classList.contains('deletePostButton')) {
             postID = event.target.dataset.id;
             deletePost(postID);

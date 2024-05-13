@@ -11,12 +11,12 @@ header {
     width: 100%;
 }
 
-header span{
+header span {
     color: var(--text-white);
     font-size: 1.25rem;
 }
 
-main{
+main {
     height: 100%;
     width: 100%;
     padding: 2rem 0;
@@ -25,7 +25,7 @@ main{
     align-items: center;
 }
 
-.loginContainer, .registrationContainer{
+.loginContainer, .registrationContainer {
     width: 100%;
     max-width: 25rem;
     background-color: #ffffff;
@@ -35,7 +35,7 @@ main{
     align-items: center;
 }
 
-.loginForm, .registrationForm{
+.loginForm, .registrationForm {
     padding: 1rem;
     width: 100%;
     display: flex;
@@ -46,31 +46,32 @@ main{
     border-radius: 0.5rem;
 }
 
-h1{
+h1 {
     font-size: 1.125rem;
     font-weight: 500;
 }
 
-.loginForm label, .registrationForm label{
+.loginForm label, .registrationForm label {
     font-family: roboto, sans-serif;
     font-size: 1rem;
     color: var(--text);
 }
 
-.loginForm input, .registrationForm input{
+.loginForm input, .registrationForm input {
     width: 100%;
     height: 2.5rem;
     background-color: #D2D2D2;
     padding: 0.25rem 0.5rem;
+    border: 1px solid var(--text);
     border-radius: 0.5rem;
     font-family: roboto, sans-serif;
 }
 
-.loginForm input:hover, .loginForm input:active, .loginForm input:focus, .registrationForm input:hover, .registrationForm input:active, .registrationForm input:focus{
+.loginForm input:hover, .loginForm input:active, .loginForm input:focus, .registrationForm input:hover, .registrationForm input:active, .registrationForm input:focus {
     background-color: #ffffff;
 }
 
-#loginSubmit, #registerSubmit{
+#loginSubmit, #registerSubmit {
     background-color: var(--secondary);
     color: var(--text-white);
     display: flex;
@@ -80,13 +81,14 @@ h1{
     font-size: 1.125rem;
     cursor: pointer;
     text-align: center;
+    border: 0;
 }
 
-#loginSubmit:hover, #loginSubmit:focus, #registerSubmit:hover, #registerSubmit:focus{
+#loginSubmit:hover, #loginSubmit:focus, #registerSubmit:hover, #registerSubmit:focus {
     background-color: var(--secondary-hover);
 }
 
-.loginForm a, .registrationForm a{
+.loginForm a, .registrationForm a {
     font-size: 1rem;
     font-family: roboto, sans-serif;
     width: 100%;
@@ -94,27 +96,30 @@ h1{
     color: var(--captions);
 }
 
-.loginForm a:hover, .registrationForm a:hover{
+.loginForm a:hover, .registrationForm a:hover {
     color: var(--secondary-hover);
 }
 
 @media screen and (min-width: 25rem) {
-    .loginContainer, .registrationContainer{
+    .loginContainer, .registrationContainer {
         border-radius: 1rem;
     }
 }
 
 @media screen and (min-width: 50rem) {
-    header{
+    header {
         height: 4.25rem;
     }
-    header img{
+
+    header img {
         height: 100%;
     }
-    header span{
+
+    header span {
         font-size: 3rem;
     }
-    h1{
+
+    h1 {
         font-size: 1.25rem;
     }
 }

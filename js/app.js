@@ -1,4 +1,15 @@
-import {fetchPosts, fetchPostByID, loginFunction, fetchPostsEditPage, createPostFunction, editPostFunction, register, loadMorePostsBlogFeed, loadMorePostsEditPage, toggleOptionMenu, reorderPosts
+import {
+    fetchPosts,
+    fetchPostByID,
+    loginFunction,
+    fetchPostsEditPage,
+    createPostFunction,
+    editPostFunction,
+    register,
+    loadMorePostsBlogFeed,
+    loadMorePostsEditPage,
+    toggleOptionMenu,
+    reorderPosts
 } from "./functions.js";
 import {
     checkIfLoggedIn, logoutFunction, burgerMenuSetup

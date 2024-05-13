@@ -1,4 +1,4 @@
-header{
+header {
     width: 100%;
     height: 3.125rem;
     background-color: var(--primary);
@@ -7,35 +7,40 @@ header{
     position: relative;
 }
 
-footer{
+.headerStart a{
+    font-size: 1.5rem;
+}
+
+footer {
     width: 100%;
     height: 3.125rem;
     background-color: var(--footer);
 }
-footer a{
+
+footer a {
     height: 100%;
     width: fit-content;
     display: block;
 }
 
-.headerLogoImg, .headerLogoLink{
+.headerLogoImg, .headerLogoLink {
     height: 100%;
     width: fit-content;
     display: block;
 }
 
-.headerAdminNavDesktop{
+.headerAdminNavDesktop {
     display: none;
 }
 
-.headerEnd{
+.headerEnd {
     padding: 0.5rem 1rem;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.burgerMenu{
+.burgerMenu {
     display: none;
     flex-direction: column;
     align-items: center;
@@ -50,7 +55,7 @@ footer a{
     gap: 0.5rem;
 }
 
-.burgerMenuToggle{
+.burgerMenuToggle {
     height: 1.9375rem;
     width: 1.9375rem;
     display: flex;
@@ -59,7 +64,7 @@ footer a{
     cursor: pointer;
 }
 
-.burgerMenuCreateNew, .burgerMenuManagePosts, .burgerMenuLogoutBTN{
+.burgerMenuCreateNew, .burgerMenuManagePosts, .burgerMenuLogoutBTN {
     width: 19rem;
     height: 2.5rem;
     display: flex;
@@ -70,53 +75,59 @@ footer a{
     border-radius: 0.5rem;
 }
 
-.burgerMenuCreateNew, .burgerMenuManagePosts{
+.burgerMenuCreateNew, .burgerMenuManagePosts {
     background-color: var(--secondary);
 }
 
-.burgerMenuCreateNew:hover, .burgerMenuManagePosts:hover, .burgerMenuCreateNew:focus, .burgerMenuManagePosts:focus{
+.burgerMenuCreateNew:hover, .burgerMenuManagePosts:hover, .burgerMenuCreateNew:focus, .burgerMenuManagePosts:focus {
     background-color: var(--secondary-hover);
 }
 
-.burgerMenuLogoutBTN{
+.burgerMenuLogoutBTN {
     background-color: var(--primary);
     justify-self: end;
     cursor: pointer;
 }
 
-.burgerMenuLogoutBTN:hover, .burgerMenuLogoutBTN:focus{
+.burgerMenuLogoutBTN:hover, .burgerMenuLogoutBTN:focus {
     background-color: var(--primary-hover);
 }
 
-.burgerMenuGap{
+.burgerMenuGap {
     flex-grow: 1;
 }
 
 @media screen and (min-width: 50rem) {
 
-    header{
+    header {
         height: 4.25rem;
     }
-    footer{
+
+    footer {
         height: 4.25rem;
     }
-    header img, footer img{
+
+    header img, footer img {
         height: 100%;
     }
-    .headerAdminNavDesktop{
+
+    .headerAdminNavDesktop {
         display: block;
         color: var(--text-white);
         font-size: 1.25rem;
         padding: 0.5rem;
     }
-    .burgerMenuToggle{
+
+    .burgerMenuToggle {
         display: none;
     }
-    .fa-right-from-bracket{
+
+    .fa-right-from-bracket {
         cursor: pointer;
         font-size: 1.75rem;
     }
-    .headerStart{
+
+    .headerStart {
         display: flex;
         gap: 0.5rem;
         align-items: flex-end;
