@@ -11,7 +11,8 @@ export function logoutFunction() {
         sessionStorage.removeItem('accessToken');
         window.location.href = '/FED1-Project-Exam-1/account/login.html';
     }
-    document.addEventListener('click', function(event) {
+
+    document.addEventListener('click', function (event) {
         if (event.target.classList.contains('logoutBTN') || event.target.classList.contains('burgerMenuLogoutBTN') || event.target.closest('.logoutBTN')) {
             logout();
         }
@@ -31,12 +32,12 @@ export function formatDateTime(dateTimeString) {
 }
 
 //Burger Menu
-export function burgerMenuSetup(){
+export function burgerMenuSetup() {
     const body = document.querySelector("body");
     const burgerMenuToggle = document.querySelector(".burgerMenuToggle");
     const burgerMenu = document.querySelector(".burgerMenu");
 
-    burgerMenuToggle.addEventListener("click", function(){
+    burgerMenuToggle.addEventListener("click", function () {
         if (burgerMenu.style.display === "none" || burgerMenu.style.display === "") {
             burgerMenu.style.display = "flex";
             body.classList.add("menu-open");

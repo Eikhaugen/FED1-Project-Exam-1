@@ -27,8 +27,10 @@
             <a class="headerAdminNavDesktop" href="make.html">Create new post</a>
         </div>
         <div class="headerEnd">
-            <button class="logoutBTN headerAdminNavDesktop" aria-label="Log out"><i class="fa-regular fa-right-from-bracket" style="color: #ffffff;"></i></button>
-            <button class="burgerMenuToggle" aria-label="Toggle Menu"><i class="fa-solid fa-bars fa-xl" style="color: #ffffff;"></i></button>
+            <button class="logoutBTN headerAdminNavDesktop" aria-label="Log out"><i
+                    class="fa-regular fa-right-from-bracket" style="color: #ffffff;"></i></button>
+            <button class="burgerMenuToggle" aria-label="Toggle Menu"><i class="fa-solid fa-bars fa-xl"
+                                                                         style="color: #ffffff;"></i></button>
             <div class="burgerMenu headerAdminNavMobile" role="navigation" aria-label="Mobile navigation">
                 <a class="burgerMenuCreateNew" href="make.html">Create new post</a>
                 <a class="burgerMenuManagePosts" href="edit.html">Manage posts</a>
@@ -38,20 +40,21 @@
         </div>
     </header>
 
-        <main role="main" aria-label="Main content">
-            <form id="createNewPostForm" aria-labelledby="createNewPostTitle">
-                <h1>Create new post</h1>
-                <label for="createNewTitle">Title:</label>
-                <input id="createNewTitle" type="text" aria-label="Title" required>
-                <label for="createNewText">Main text:</label>
-                <textarea id="createNewText" aria-label="Main text" maxlength="2000" required rows="10" cols="50"></textarea>
-                <label for="createNewImage">Image URL:</label>
-                <input id="createNewImage" type="url" aria-label="Image URL">
-                <label for="createNewImage">Image Text:</label>
-                <input id="createNewImageText" type="text" aria-label="Image alt">
-                <input id="createNewSubmit" type="submit" value="Submit" aria-label="Submit">
-            </form>
-        </main>
+    <main role="main" aria-label="Main content">
+        <form id="createNewPostForm" aria-labelledby="createNewPostTitle">
+            <h1 id="createNewPostTitle">Create new post</h1>
+            <label for="createNewTitle">Title:</label>
+            <input id="createNewTitle" type="text" aria-label="Title" required>
+            <label for="createNewText">Main text:</label>
+            <textarea id="createNewText" aria-label="Main text" maxlength="2000" required rows="10"
+                      cols="50"></textarea>
+            <label for="createNewImage">Image URL:</label>
+            <input id="createNewImage" type="url" aria-label="Image URL">
+            <label for="createNewImage">Image Text:</label>
+            <input id="createNewImageText" type="text" aria-label="Image alt">
+            <input id="createNewSubmit" type="submit" value="Submit" aria-label="Submit">
+        </form>
+    </main>
     <footer>
         <img src="../assets/images/logo/logo-w.svg" alt="Innovatech solutions logo">
     </footer>

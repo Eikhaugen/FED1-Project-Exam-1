@@ -26,14 +26,14 @@ p,
 a,
 li,
 span,
-button{
+button {
     font-family: "roboto", sans-serif;
     font-weight: 400;
     font-size: 1rem;
     color: var(--text);
 }
 
-a:focus, button:focus{
+a:focus, button:focus {
     border: 1px solid #ffffff;
 }
 
@@ -50,6 +50,6 @@ body {
     overflow: hidden;
 }
 
-main{
+main {
     max-width: 1440px;
 }

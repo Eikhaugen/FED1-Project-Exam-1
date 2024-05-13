@@ -2,11 +2,11 @@
 @import url(constants.css);
 @import url(header-and-footer.css);
 
-main{
+main {
     padding: 0.5rem;
 }
 
-.blogPostContainer{
+.blogPostContainer {
     background-color: #ffffff;
     padding: 0.5rem;
     border-radius: 0.5rem;
@@ -16,22 +16,23 @@ main{
     gap: 0.5rem;
 }
 
-.blogPostImageContainer{
+.blogPostImageContainer {
     width: 100%;
 }
 
-.articleImgText{
+.articleImgText {
     width: 100%;
     font-size: 0.9375rem;
     color: var(--captions);
     display: block;
 }
 
-h1{
+h1 {
     font-size: 2rem;
     font-weight: 500;
 }
-.articlePublished, .articleAuthor{
+
+.articlePublished, .articleAuthor {
     font-size: 0.8125rem;
     color: var(--captions);
 }
@@ -41,15 +42,18 @@ h1{
 }
 
 @media screen and (min-width: 50rem) {
-    h1{
+    h1 {
         font-size: 3rem;
     }
-    .articleImgText{
+
+    .articleImgText {
         font-size: 1.125rem;
     }
-    .articlePublished, .articleAuthor{
+
+    .articlePublished, .articleAuthor {
         font-size: 1rem;
     }
+
     .articleMainText {
         font-size: 1.25rem;
     }

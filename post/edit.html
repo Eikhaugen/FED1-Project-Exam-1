@@ -27,8 +27,10 @@
             <a class="headerAdminNavDesktop" href="make.html">Create new post</a>
         </div>
         <div class="headerEnd">
-            <button class="logoutBTN headerAdminNavDesktop" aria-label="Log out"><i class="fa-regular fa-right-from-bracket" style="color: #ffffff;"></i></button>
-            <button class="burgerMenuToggle" aria-label="Toggle Menu"><i class="fa-solid fa-bars fa-xl" style="color: #ffffff;"></i></button>
+            <button class="logoutBTN headerAdminNavDesktop" aria-label="Log out"><i
+                    class="fa-regular fa-right-from-bracket" style="color: #ffffff;"></i></button>
+            <button class="burgerMenuToggle" aria-label="Toggle Menu"><i class="fa-solid fa-bars fa-xl"
+                                                                         style="color: #ffffff;"></i></button>
             <div class="burgerMenu headerAdminNavMobile" role="navigation" aria-label="Mobile navigation">
                 <a class="burgerMenuCreateNew" href="make.html">Create new post</a>
                 <a class="burgerMenuManagePosts" href="edit.html">Manage posts</a>
@@ -41,15 +43,15 @@
     <main role="main" aria-label="Main content">
         <section class="editPostSection" role="region" aria-label="Edit post section">
             <form id="editPostForm" aria-labelledby="editPostTitle">
-                <span>Edit post</span>
+                <span id="editPostTitle">Edit post</span>
                 <label for="editTitle">Title:</label>
                 <input id="editTitle" type="text" aria-label="Title" required>
                 <label for="editText">Main text:</label>
                 <textarea id="editText" aria-label="Main text" maxlength="2000" required rows="10" cols="50"></textarea>
                 <label for="editImage">Image URL:</label>
-                <input id="editImage" type="url" aria-label="Image URL" >
+                <input id="editImage" type="url" aria-label="Image URL">
                 <label for="editImageText">Image text:</label>
-                <input id="editImageText" type="text" aria-label="Image text" >
+                <input id="editImageText" type="text" aria-label="Image text">
                 <input id="editSubmit" type="submit" value="Save Changes" aria-label="Save changes" disabled>
                 <button type="button" id="discardChanges">Discard Changes</button>
             </form>
@@ -58,21 +60,7 @@
         <section class="managePostsSection" role="region" aria-label="Manage posts section">
             <h1>Manage posts</h1>
             <div class="postsContainer">
-                <div class="postCard" data-id="${post.id}">
-                    <div class="postCardEdit">
-                        <button class="editPostButton" aria-label="Edit Post">Edit post</button>
-                        <button class="deletePostButton" aria-label="Delete Post">Delete post X</button>
-                    </div>
-                    <div class="postCardContent">
-                        <img class="postCardImg" src="" alt="">
-                        <h2 class="postCardTitle">Lorem Ipsum</h2>
-                        <p class="postCardTruncText">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam elit ligula, posuere vitae
-                            magna id...
-                        </p>
-                        <span class="postCardPublished">16.04.2024</span>
-                    </div>
-                </div>
+
             </div>
             <button class="loadMorePostsEditPageBTN">Load more</button>
         </section>

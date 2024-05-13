@@ -2,49 +2,49 @@
 @import url(constants.css);
 @import url(header-and-footer.css);
 
-main{
+main {
     padding: 1rem;
     width: 100%;
     flex: 1;
 }
 
-h1{
+h1 {
     font-size: 1.25rem;
     font-weight: 500;
     width: 100%;
     text-align: left;
 }
 
-h2{
+h2 {
     font-size: 1.25rem;
     font-weight: 400;
 }
 
-.editPostSection{
+.editPostSection {
     left: 0;
     display: none;
     width: 100%;
     background-color: var(--background);
 }
 
-.managePostsSection{
+.managePostsSection {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
     align-items: center;
 }
 
-.managePostsSection h1{
+.managePostsSection h1 {
     color: var(--text-white);
 }
 
-.postsContainer{
+.postsContainer {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
 }
 
-.postCard{
+.postCard {
     background-color: #ffffff;
     padding: 0.5rem;
     border-radius: 0.5rem;
@@ -53,31 +53,31 @@ h2{
     gap: 0.5rem;
 }
 
-.postCardEdit{
+.postCardEdit {
     display: flex;
     justify-content: space-between;
 }
 
-.editPostButton, .deletePostButton{
+.editPostButton, .deletePostButton {
     color: var(--clickable-text);
     cursor: pointer;
 }
 
-.editPostButton:hover, .editPostButton:focus{
+.editPostButton:hover, .editPostButton:focus {
     color: var(--secondary-hover);
 }
 
-.deletePostButton:hover, .deletePostButton:focus{
+.deletePostButton:hover, .deletePostButton:focus {
     color: var(--primary-hover);
 }
 
-.postCardContent{
+.postCardContent {
     display: flex;
     flex-direction: column;
     gap: 0.5rem; /* 8px */
 }
 
-#createNewPostForm, #editPostForm{
+#createNewPostForm, #editPostForm {
     width: 100%;
     height: fit-content;
     background-color: #FFFFFF;
@@ -89,7 +89,7 @@ h2{
     gap: 0.5rem;
 }
 
-#createNewPostForm h1{
+#createNewPostForm h1 {
     font-size: 1.25rem;
     font-weight: 500;
     color: var(--text);
@@ -102,16 +102,15 @@ h2{
     padding: 0.25rem 0.5rem;
     border-radius: 0.5rem;
     font-family: roboto, sans-serif;
-    border: 1px solid #ffffff;
-}
-#createNewTitle:hover, #createNewImage:hover, #createNewImageText:hover, #createNewTitle:focus-within, #createNewImage:focus-within, #createNewImageText:focus-within,
-#editTitle:hover, #editImage:hover, #editImageText:hover, #editTitle:focus-within, #editImage:focus-within, #editImageText:focus-within
-{
-    background-color: #ffffff;
-    border: 1px solid #d2d2d2;
+    border: 1px solid var(--text);
 }
 
-#createNewPostForm label, #editPostForm label{
+#createNewTitle:hover, #createNewImage:hover, #createNewImageText:hover, #createNewTitle:focus-within, #createNewImage:focus-within, #createNewImageText:focus-within,
+#editTitle:hover, #editImage:hover, #editImageText:hover, #editTitle:focus-within, #editImage:focus-within, #editImageText:focus-within {
+    background-color: #ffffff;
+}
+
+#createNewPostForm label, #editPostForm label {
     font-family: roboto, sans-serif;
     font-size: 1rem;
     color: var(--text);
@@ -120,22 +119,25 @@ h2{
     font-weight: 500;
 }
 
-textarea{
+textarea {
     width: 100%;
     height: fit-content;
     background-color: #D2D2D2;
     padding: 0.25rem 0.5rem;
     border-radius: 0.5rem;
     font-family: roboto, sans-serif;
-    border: 1px solid #ffffff;
+    border: 1px solid var(--text);
 }
 
-textarea:hover, textarea:focus-within{
+textarea:hover, textarea:focus-within {
     background-color: #ffffff;
-    border: 1px solid #d2d2d2;
 }
 
-.loadMorePostsEditPageBTN, #createNewSubmit, #editSubmit{
+.loadMorePostsEditPageBTN {
+    font-size: 1.25rem;
+}
+
+.loadMorePostsEditPageBTN, #createNewSubmit, #editSubmit {
     width: 10rem;
     height: 2.5rem;
     background-color: var(--secondary);
@@ -147,18 +149,18 @@ textarea:hover, textarea:focus-within{
     text-align: center;
 }
 
-.loadMorePostsEditPageBTN, #createNewSubmit, #editSubmit, #discardChanges{
+.loadMorePostsEditPageBTN, #createNewSubmit, #editSubmit, #discardChanges {
     font-family: "roboto", sans-serif;
     font-weight: 400;
     font-size: 1rem;
     cursor: pointer;
 }
 
-.loadMorePostsEditPageBTN:hover, .loadMorePostsEditPageBTN:focus, #createNewSubmit:hover, #createNewSubmit:focus, #editSubmit:hover, #editSubmit:focus{
+.loadMorePostsEditPageBTN:hover, .loadMorePostsEditPageBTN:focus, #createNewSubmit:hover, #createNewSubmit:focus, #editSubmit:hover, #editSubmit:focus {
     background-color: var(--secondary-hover);
 }
 
-#discardChanges{
+#discardChanges {
     width: 10rem;
     height: 2.5rem;
     background-color: var(--primary);
@@ -169,27 +171,27 @@ textarea:hover, textarea:focus-within{
     border-radius: 0.5rem;
 }
 
-#discardChanges:hover, #discardChanges:focus{
+#discardChanges:hover, #discardChanges:focus {
     background-color: var(--primary-hover);
 }
 
 @media screen and (min-width: 50rem) {
 
-    .postsContainer{
+    .postsContainer {
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(21.875rem, 1fr));
         align-items: stretch;
     }
 
-    .editPostButton, .deletePostButton{
+    .editPostButton, .deletePostButton {
         font-size: 1.125rem;
     }
 
-    .postCardTitle{
+    .postCardTitle {
         font-size: 2rem;
     }
 
-    .postCardTruncText{
+    .postCardTruncText {
         font-size: 1.25rem;
     }
 
@@ -197,22 +199,27 @@ textarea:hover, textarea:focus-within{
         font-size: 1.125rem;
     }
 
-    #editPostForm span{
+    #editPostForm span {
         font-size: 2rem;
     }
 
-    #editPostForm label, #createNewPostForm label{
+    #editPostForm label, #createNewPostForm label {
         font-size: 1rem;
     }
 
-    #createNewPostForm h1{
-        font-size: 2rem;
-    }
-    #createNewSubmit{
-        font-size: 1.125rem;
-    }
-    .managePostsSection h1{
+    #createNewPostForm h1 {
         font-size: 2rem;
     }
 
+    #createNewSubmit {
+        font-size: 1.125rem;
+    }
+
+    .managePostsSection h1 {
+        font-size: 2rem;
+    }
+
+    .loadMorePostsEditPageBTN {
+        font-size: 1.5rem;
+    }
 }
