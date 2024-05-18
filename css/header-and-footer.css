@@ -138,6 +138,24 @@ footer a {
 .searchButton:hover{
     background-color: var(--secondary-hover);
 }
+.searchResultContainer {
+    position: absolute;
+    width: 100%;
+    background-color: var(--background);
+    z-index: 10;
+    top: 3.125rem;
+    left: 0;
+    display: none;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 0.5rem;
+    border-top: 1px solid var(--captions);
+}
+.searchResultPostsContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
 
 @media screen and (min-width: 50rem) {
 
