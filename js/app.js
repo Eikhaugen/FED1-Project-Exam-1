@@ -12,7 +12,7 @@ import {
     reorderPosts
 } from "./functions.js";
 import {
-    checkIfLoggedIn, logoutFunction, burgerMenuSetup
+    checkIfLoggedIn, logoutFunction, burgerMenuSetup, postSearchFunctionSetup
 } from "./utils.js";
 
 function getPathname() {
@@ -32,12 +32,14 @@ function route() {
             loadMorePostsBlogFeed();
             toggleOptionMenu();
             reorderPosts();
+            postSearchFunctionSetup()
             break;
         case 'post':
             handlePost();
             break;
         case 'post/index.html':
             fetchPostByID();
+            postSearchFunctionSetup()
             break;
         case 'post/make.html':
             checkIfLoggedIn();
@@ -72,6 +74,7 @@ function handlePost() {
     switch (postPath) {
         case 'index.html':
             fetchPostByID();
+            postSearchFunctionSetup()
             break;
         case 'make.html':
             checkIfLoggedIn();
