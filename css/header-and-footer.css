@@ -97,6 +97,48 @@ footer a {
     flex-grow: 1;
 }
 
+.headerMid{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    flex-grow: 1;
+}
+.headerMid form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    width: 100%;
+}
+.searchInput {
+    background-color: var(--text-white);
+    width: 100%;
+    max-width: 400px;
+    height: 2.5rem;
+    border-radius: 0.5rem;
+    border: 1px solid var(--captions);
+    padding: 0.5rem;
+    font-size: 1rem;
+    font-family: roboto, sans-serif;
+    color: var(--text);
+}
+
+.searchButton{
+    background-color: var(--secondary);
+    color: var(--text-white);
+    height: 2.5rem;
+    width: 2.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0.5rem;
+    cursor: pointer;
+}
+.searchButton:hover{
+    background-color: var(--secondary-hover);
+}
+
 @media screen and (min-width: 50rem) {
 
     header {
