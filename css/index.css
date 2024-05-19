@@ -194,6 +194,10 @@ h2 {
     cursor: pointer;
 }
 
+.select-button i:hover {
+    color: var(--secondary-hover);
+}
+
 .custom-select {
     position: relative;
     height: 1.9375rem;
