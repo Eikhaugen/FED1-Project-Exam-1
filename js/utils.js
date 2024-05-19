@@ -54,15 +54,23 @@ export function burgerMenuSetup() {
 let debounceTimer;
 export function postSearchFunctionSetup() {
     const searchInput = document.querySelector('.searchInput');
+    const searchButton = document.querySelector('.searchButton');
     const searchResultContainer = document.querySelector('.searchResultContainer');
-    const header = document.querySelector('header');
+    const headerMid = document.querySelector('.headerMid');
+
+    const performSearch = () => {
+        const searchInputValue = searchInput.value;
+        searchPosts(searchInputValue);
+    };
 
     searchInput.addEventListener('input', function() {
         clearTimeout(debounceTimer);
-        debounceTimer = setTimeout(() => {
-            const searchInputValue = searchInput.value;
-            searchPosts(searchInputValue);
-        }, 300);
+        debounceTimer = setTimeout(performSearch, 300);
+    });
+
+    searchButton.addEventListener('click', function(event) {
+        event.preventDefault();
+        performSearch();
     });
 
     searchInput.addEventListener('click', function() {
@@ -70,7 +78,7 @@ export function postSearchFunctionSetup() {
     });
 
     document.addEventListener('click', function(event) {
-        if (!searchResultContainer.contains(event.target) && !header.contains(event.target)) {
+        if (!searchResultContainer.contains(event.target) && !headerMid.contains(event.target)) {
             searchResultContainer.style.display = 'none';
         }
     });
@@ -86,33 +94,37 @@ async function searchPosts(searchInputValue) {
         const postData = result.data;
         let scoredPosts = [];
 
+        const searchWords = searchInputValue.split(' ');
+
         postData.forEach(post => {
             let score = 0;
             const wordsInTitle = post.title.split(' ');
             const wordsInBody = post.body.split(' ');
-            wordsInTitle.forEach(word => {
-                if (word.toLowerCase() === searchInputValue.toLowerCase()) {
-                    score++;
-                }
+
+            searchWords.forEach(searchWord => {
+                wordsInTitle.forEach(word => {
+                    if (word.toLowerCase() === searchWord.toLowerCase()) {
+                        score++;
+                    }
+                });
+                wordsInBody.forEach(word => {
+                    if (word.toLowerCase() === searchWord.toLowerCase()) {
+                        score++;
+                    }
+                });
             });
-            wordsInBody.forEach(word => {
-                if (word.toLowerCase() === searchInputValue.toLowerCase()) {
-                    score++;
-                }
-            });
+
             scoredPosts.push({ post, score });
         });
+
         scoredPosts.sort((a, b) => b.score - a.score);
 
         for (let i = 0; i < Math.min(4, scoredPosts.length); i++) {
             const post = scoredPosts[i].post;
-            const text = post.body.split(" ");
-            let truncatedText = text.slice(0, 20).join(" ") + "...";
             postsContainer.innerHTML +=
                 `<a class="searchResultCard" href="post/index.html?id=${post.id}" aria-label="navigate to blog post">
-                    <img src="${post.media.url}" alt="${post.media.alt}">
-                    <h2>${post.title}</h2>
-                    <span class="blogFeedPostCardTruncText">${truncatedText}</span>
+                    <img class="searchResultImage" src="${post.media.url}" alt="${post.media.alt}">
+                        <h2>${post.title}</h2>
                 </a>`;
         }
         searchResultContainer.style.display = 'flex';

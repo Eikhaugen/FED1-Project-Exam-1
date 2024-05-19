@@ -103,7 +103,9 @@ footer a {
     align-items: center;
     gap: 0.5rem;
     flex-grow: 1;
+    max-width: 500px;
 }
+
 .headerMid form{
     display: flex;
     justify-content: center;
@@ -111,6 +113,7 @@ footer a {
     gap: 0.5rem;
     width: 100%;
 }
+
 .searchInput {
     background-color: var(--text-white);
     width: 100%;
@@ -138,10 +141,11 @@ footer a {
 .searchButton:hover{
     background-color: var(--secondary-hover);
 }
+
 .searchResultContainer {
     position: absolute;
     width: 100%;
-    background-color: var(--background);
+    background-color: var(--primary);
     z-index: 10;
     top: 3.125rem;
     left: 0;
@@ -149,12 +153,49 @@ footer a {
     flex-direction: column;
     gap: 0.5rem;
     padding: 0.5rem;
-    border-top: 1px solid var(--captions);
 }
 .searchResultPostsContainer {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
+}
+.searchResultCard{
+    display: flex;
+    gap: 0.5rem;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    background-color: #FFFFFF;
+}
+
+.searchResultCard h2{
+font-size: 1rem;
+    font-weight: 400;
+    color: var(--text);
+}
+
+.searchResultImage{
+    height: 50px;
+}
+
+@media screen and (min-width: 450px){
+    .headerMid{
+        position: relative;
+    }
+    .searchResultImage{
+        height: 90px;
+    }
+    .searchResultContainer{
+        border-bottom-left-radius: 1rem;
+        border-bottom-right-radius: 1rem;
+        max-width: 500px;
+    }
+
+    .searchResultCard h2{
+        font-size: 1.25rem;
+        font-weight: 500;
+    }
+
 }
 
 @media screen and (min-width: 50rem) {
@@ -192,4 +233,9 @@ footer a {
         gap: 0.5rem;
         align-items: flex-end;
     }
+
+    .searchResultContainer {
+        top: 4.24rem;
+    }
+
 }
