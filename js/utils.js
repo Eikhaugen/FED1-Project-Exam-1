@@ -119,10 +119,13 @@ async function searchPosts(searchInputValue) {
 
         scoredPosts.sort((a, b) => b.score - a.score);
 
+        const currentPath = window.location.pathname;
+        const hrefValue = currentPath.includes('post/index.html') ? 'index.html' : 'post/index.html';
+
         for (let i = 0; i < Math.min(4, scoredPosts.length); i++) {
             const post = scoredPosts[i].post;
             postsContainer.innerHTML +=
-                `<a class="searchResultCard" href="post/index.html?id=${post.id}" aria-label="navigate to blog post">
+                `<a class="searchResultCard" href="${hrefValue}?id=${post.id}" aria-label="navigate to blog post">
                     <img class="searchResultImage" src="${post.media.url}" alt="${post.media.alt}">
                         <h2>${post.title}</h2>
                 </a>`;
