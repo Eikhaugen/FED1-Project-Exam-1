@@ -61,7 +61,7 @@
 
 .carouselPostCard {
     max-width: 25rem;
-    height: 100%;
+    height: fit-content;
     flex: 0 0 85%;
     transition: transform 0.5s;
     filter: brightness(90%);
@@ -74,12 +74,12 @@
 }
 
 .carouselPostCardLeft {
-    transform: translateX(-90%);
+    transform: translateX(-90%) scale(0.9);
     position: absolute;
 }
 
 .carouselPostCardRight {
-    transform: translateX(90%);
+    transform: translateX(90%) scale(0.9);
     position: absolute;
 }
 
@@ -89,7 +89,6 @@
     justify-content: center;
     overflow: hidden;
     width: 100%;
-    height: fit-content;
     position: relative;
     padding: 2rem;
 }
@@ -299,5 +298,9 @@ h2 {
 
     .loadMorePostsFeedBTN {
         font-size: 1.5rem;
+    }
+
+    .carouselPostsContainer{
+        height: 460px;
     }
 }
