@@ -20,7 +20,7 @@
     background-color: var(--primary);
     color: var(--text-white);
     border-radius: 0.5rem;
-    padding: 0.25rem;
+    padding: 0.25rem 0.75rem;
     display: flex;
     justify-content: center;
     align-items: center;
