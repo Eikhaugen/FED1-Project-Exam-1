@@ -4,6 +4,14 @@
 
 This was the project exam for the first year of Frontend Development and Noroff School of Technology and Digital Media.
 
+## Table of contents:
+- [Description](#description)
+  - [Features](#features)
+  - [Built with](#built-with)
+- [Installing](#installing)
+  - [Running](#running)
+- [Contact](#contact)
+
 ## Description
 
 This project is a blog website for a fictitious tech R&D company.
@@ -40,6 +48,5 @@ Use webstorm, VSCode or any other code editor to run the project using liveserve
 
 Find me here:
 
-[My LinkedIn page](www.linkedin.com)
+[My LinkedIn page](https://www.linkedin.com/in/thomas-eikhaugen-897234264/)  
 [My GitHub page](https://github.com/Eikhaugen)
-
