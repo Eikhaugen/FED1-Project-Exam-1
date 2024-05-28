@@ -30,10 +30,10 @@ It uses the blog endpoint from the Noroff API to fetch blog posts and display th
 
 ### Built with
 
--Figma (Design and prototype)  
--HTML  
--CSS  
--JS  
+- Figma (Design and prototype)  
+- HTML  
+- CSS  
+- JS  
 
 ## Installing
 Clone the project repository to your local machine.
